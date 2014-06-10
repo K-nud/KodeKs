@@ -1,7 +1,6 @@
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import java.io.*;
 
 import javax.swing.JOptionPane;
@@ -12,6 +11,7 @@ public class SaveGame {
 	static String fixedPlayer2;
 	static int newValue;
 	
+	@SuppressWarnings("static-access")
 	public SaveGame() {
 		//Sets the Format for the Date we use
 		DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy");
@@ -19,8 +19,8 @@ public class SaveGame {
 	    //Get the numbers of TokenLeft for each player
 	    //int redTokenLeft = KodeKsData.getNumberOfStones(1);
 	    //int blueTokenLeft = KodeKsData.getNumberOfStones(2);
-	    fixedPlayer1=new String(KodeKsBoard.Player1Label.getText());
-	    fixedPlayer2=new String(KodeKsBoard.Player2Label.getText());
+	    fixedPlayer1=new String(KodeKsBoard.Player1Name.getText());
+	    fixedPlayer2=new String(KodeKsBoard.Player2Name.getText());
 	    int redTokenLeft = KodeKsBoard.NumberOfRedStones;
 	    //int blueTokenLeft = KodeKsBoard.NumberOfBlueStones;
 		//Create the title of the save-file
@@ -39,13 +39,11 @@ public class SaveGame {
     		File file = new File(saveGameTitle);
     		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));    		
     		oos.writeObject(RunKodeKs.main);
-    		oos.defaultWriteObject();
-    		//oos.writeObject(GUI.board.boardState);
-    		//oos.writeObject(AnalysePanel.analyseScroll);
-    		
-    		//oos.writeObject(GUI.statusPanel);
-    		//oos.writeObject(GUI.board.Player1_Stones);
-    		//oos.writeObject(GUI.board.Player2_Stones);
+    		oos.writeObject(GUI.board.boardState);
+    		oos.writeObject(GUI.analysePanel);  		
+    		oos.writeObject(GUI.statusPanel);
+    		oos.writeObject(GUI.board.Player1_Stones);
+    		oos.writeObject(GUI.board.Player2_Stones);
     		
     		oos.close();
     	}
@@ -59,6 +57,7 @@ public class SaveGame {
 	}
 	
 	//Saves the positioning of the tokens within a String
+	@SuppressWarnings("static-access")
 	static String getTokenPositionList() {
 		String tokenPositionList = "";
         for (int row = 0; row < 10; row++) {
