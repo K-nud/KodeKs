@@ -1,7 +1,6 @@
 import java.io.*;
 
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -15,6 +14,7 @@ public class LoadGame {
     		player1Name = null,
     		player2Name = null;
 	
+	@SuppressWarnings("static-access")
 	public LoadGame() {
 		//Create JFileChooser-Object
 		JFileChooser load = new JFileChooser();
@@ -33,13 +33,12 @@ public class LoadGame {
 			FileInputStream is = new FileInputStream(loadGameTitle);
     		ObjectInputStream ois = new ObjectInputStream(is);
     		RunKodeKs.main = (GUI) ois.readObject();
-    		 ois.defaultReadObject();
-    		//GUI.toolBar = (KodeKsToolBar) ois.readObject();
-    		//GUI.board.boardState = (KodeKsData)ois.readObject();
-    		//AnalysePanel.analyseScroll= (JScrollPane) ois.readObject();
-    		//GUI.statusPanel = (StatusPanel) ois.readObject();
-    		//GUI.board.Player1_Stones = (JPanel) ois.readObject();
-    		//GUI.board.Player2_Stones = (JPanel) ois.readObject();
+    		GUI.toolBar = (KodeKsToolBar) ois.readObject();
+    		GUI.board.boardState = (KodeKsData)ois.readObject();
+    		AnalysePanel.analyseScroll= (JScrollPane) ois.readObject();
+    		GUI.statusPanel = (StatusPanel) ois.readObject();
+    		GUI.board.Player1_Stones = (JPanel) ois.readObject();
+    		GUI.board.Player2_Stones = (JPanel) ois.readObject();
     		
     		ois.close();
 		} catch (Exception e) {
