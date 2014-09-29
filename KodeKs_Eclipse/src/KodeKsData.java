@@ -196,8 +196,9 @@ import javax.swing.JPanel;
 	       * @param player - int   The value of player should be one of the constants RED or BLUE
 	       * @return ArrayList of threaten pieces of the opponent player
 	       */
-	      @SuppressWarnings("unused")
+	      
 		ThreatenStone[] getThreatenStone(int player) {
+	         boolean laserEndpointFound = false;
 	         
 	         if (player != RED && player != BLUE)
 	            return null;
@@ -217,92 +218,180 @@ import javax.swing.JPanel;
 	                	  
 	                     	if (row+1<10 && pieceAt(row+1,col) == player){
 	                     		range=((fieldvalue[row][col]) + (fieldvalue[row+1][col]));
-	                     		for (int i=1; i<=range; i++){
+	                     		for (int i=1; i<=range && laserEndpointFound == false; i++){
 	                     			if (onBoard((row+1)+i,col))
 	                     				if (pieceAt((row+1)+i,col) != EMPTY)
-	                     					if (canTakeThreatenStone(player,(row+1)+i,col))
+	                     					if (canTakeThreatenStone(player,(row+1)+i,col)){
 	                     						threaten.add(new ThreatenStone((row+1)+i,col));
-	                     			break;		 
+	                     						laserEndpointFound = true;
+	                     					}
 	                     		}
 	                     	}
 	                     	if (col+1<10 && pieceAt(row,col+1) == player){
 	                     		range=((fieldvalue[row][col]) + (fieldvalue[row][col+1]));
-	                     		for (int i=1; i<=range; i++){
+	                     		for (int i=1; i<=range && laserEndpointFound == false; i++){
 	                     			if (onBoard(row,(col+1)+i))
 	                     				if (pieceAt(row,(col+1)+i) != EMPTY)
-	                     					if (canTakeThreatenStone(player,row,(col+1)+i))
+	                     					if (canTakeThreatenStone(player,row,(col+1)+i)){
 	                     						threaten.add(new ThreatenStone(row,(col+1)+i));
-	                     			break;
+	                     						laserEndpointFound = true;
+	                     					}
 	                     				}
 	                     		}
 	                     	if (row+1<10 && col+1<10 && pieceAt(row+1,col+1) == player){
 	                     		range=((fieldvalue[row][col]) + (fieldvalue[row+1][col+1]));
-	                     		for (int i=1; i<=range; i++){
+	                     		for (int i=1; i<=range && laserEndpointFound == false; i++){
 	                     			if (onBoard((row+1)+i,(col+1)+i))
 	                     				if (pieceAt((row+1)+i,(col+1)+i) != EMPTY)
-	                     					if (canTakeThreatenStone(player,(row+1)+i,(col+1)+i))
+	                     					if (canTakeThreatenStone(player,(row+1)+i,(col+1)+i)){
 	                     						threaten.add(new ThreatenStone((row+1)+i,(col+1)+i));
-	                     			break;
+	                     						laserEndpointFound = true;
+	                     					}
 	                     		}
 	                     	}
 	                     	if (row+1<10 && col-1>=0 && pieceAt(row+1,col-1) == player ){
 	                     		range=((fieldvalue[row][col]) + (fieldvalue[row+1][col-1]));
-	                     		for (int i=1; i<=range; i++){
+	                     		for (int i=1; i<=range && laserEndpointFound == false; i++){
 	                     			if (onBoard((row+1)+i,(col-1)-i))
 	                     				if (pieceAt((row+1)+i,(col-1)-i) != EMPTY)
-	                     					if (canTakeThreatenStone(player,(row+1)+i,(col-1)-i))
+	                     					if (canTakeThreatenStone(player,(row+1)+i,(col-1)-i)){
 	                     						threaten.add(new ThreatenStone((row+1)+i,(col-1)-i));
-	                     			break;
+	                     						laserEndpointFound = true;
+	                     					}
 	                     		}
 	                     	}
 	                     	if (row-1>=0 && col+1<10 && pieceAt((row-1),(col+1)) == player){
 	                     		range=((fieldvalue[row][col]) + (fieldvalue[row-1][col+1]));
-	                     		for (int i=1; i<=range; i++){
+	                     		for (int i=1; i<=range && laserEndpointFound == false; i++){
 	                     			if (onBoard((row-1)-i,(col+1)+i))
 	                     				if (pieceAt((row-1)-i,(col+1)+i) != EMPTY)
-	                     					if (canTakeThreatenStone(player,(row-1)-i,(col+1)+i))
+	                     					if (canTakeThreatenStone(player,(row-1)-i,(col+1)+i)){
 	                     						threaten.add(new ThreatenStone((row-1)-i,(col+1)+i));
-	                     			break;
+	                     						laserEndpointFound = true;
+	                     					}
 	                     		}
 	                     	}
 	                     	if (row-1>=0 && pieceAt(row-1,col) == player){
 	                     		range=((fieldvalue[row][col]) + (fieldvalue[row-1][col]));
-	                     		for (int i=1; i<=range; i++){
+	                     		for (int i=1; i<=range && laserEndpointFound == false; i++){
 	                     			if (onBoard((row-1)-i,col))
 	                     				if (pieceAt((row-1)-i,col) != EMPTY)
-	                     					if (canTakeThreatenStone(player,(row-1)-i,col))
+	                     					if (canTakeThreatenStone(player,(row-1)-i,col)){
 	                     						threaten.add(new ThreatenStone((row-1)-i,col));
-	                     			break;
+	                     						laserEndpointFound = true;
+	                     					}
 	                     		}
 	                     	}
 	                     	if (col-1>=0 && pieceAt(row,col-1) == player){
 	                     		range=((fieldvalue[row][col]) + (fieldvalue[row][col-1]));
-	                     		for (int i=1; i<=range; i++){
+	                     		for (int i=1; i<=range && laserEndpointFound == false; i++){
 	                     			if (onBoard(row,(col-1)-i))
 	                     				if (pieceAt(row,(col-1)-i) != EMPTY)
-	                     					if (canTakeThreatenStone(player,row,(col-1)-i))
+	                     					if (canTakeThreatenStone(player,row,(col-1)-i)){
 	                     						threaten.add(new ThreatenStone(row,(col-1)-i));
-	                     			break;
+	                     						laserEndpointFound = true;
+	                     					}
 	                     		}
 	                     	}
 	                     	if (row-1>=0 && col-1>=0 && pieceAt(row-1,col-1) == player){
 	                     		range=((fieldvalue[row][col]) + (fieldvalue[row-1][col-1]));
-	                     		for (int i=1; i<=range; i++){
+	                     		for (int i=1; i<=range && laserEndpointFound == false; i++){
 	                     			if (onBoard((row-1)-i,(col-1)-i))
 	                     				if (pieceAt((row-1)-i,(col-1)-i) != EMPTY)
-	                     					if (canTakeThreatenStone(player,(row-1)-i,(col-1)-i))
+	                     					if (canTakeThreatenStone(player,(row-1)-i,(col-1)-i)){
 	                     						threaten.add(new ThreatenStone((row-1)-i,(col-1)-i));
-	                     					break;
+	                     						laserEndpointFound = true;}
 	                     		}
 	                     	}
 	                  }
 	               }
 	           }
+	           
+	           //Combination of more than 2 opponent stones?
+	           for (int row = 0; row < 10; row++) {
+	               for (int col = 0; col < 10; col++) {
+	                  if (board[row][col] != player && board[row][col] != EMPTY) {
+	                	  int stonesOwnedInProximity=0;
+	                	  //top left
+	                	  if (onBoard(row-1,col-1) && board[row-1][col-1] != player && board[row-1][col-1] != EMPTY) {
+	                		  stonesOwnedInProximity++;
+	                	  }
+	                	  //top 
+	                	  if (onBoard(row-1,col) && board[row-1][col] != player && board[row-1][col] != EMPTY) {
+	                		  stonesOwnedInProximity++;
+	                	  }
+	                	  //top right
+	                	  if (onBoard(row-1,col+1) && board[row-1][col+1] != player && board[row-1][col+1] != EMPTY) {
+	                		  stonesOwnedInProximity++;
+	                	  }
+	                	  //left
+	                	  if (onBoard(row,col-1) && board[row][col-1] != player && board[row][col-1] != EMPTY) {
+	                		  stonesOwnedInProximity++;
+	                	  }
+	                	  //right
+	                	  if (onBoard(row,col+1) && board[row][col+1] != player && board[row][col+1] != EMPTY) {
+	                		  stonesOwnedInProximity++;
+	                	  }
+	                	  //bottom left
+	                	  if (onBoard(row+1,col-1) && board[row+1][col-1] != player && board[row+1][col-1] != EMPTY) {
+	                		  stonesOwnedInProximity++;
+	                	  }
+	                	  //bottom
+	                	  if (onBoard(row+1,col) && board[row+1][col] != player && board[row+1][col] != EMPTY) {
+	                		  stonesOwnedInProximity++;
+	                	  }
+	                	  //bottom right
+	                	  if (onBoard(row+1,col+1) && board[row+1][col+1] != player && board[row+1][col+1] != EMPTY) {
+	                		  stonesOwnedInProximity++;
+	                	  }
+	                	  if (stonesOwnedInProximity > 1){
+	                		  //top left
+		                	  if (onBoard(row-1,col-1) && board[row-1][col-1] != player && board[row-1][col-1] != EMPTY) {
+		                		  threaten.add(new ThreatenStone((row-1),(col-1)));
+		                	  }
+		                	  //top 
+		                	  if (onBoard(row-1,col) && board[row-1][col] != player && board[row-1][col] != EMPTY) {
+		                		  threaten.add(new ThreatenStone((row-1),(col)));
+		                	  }
+		                	  //top right
+		                	  if (onBoard(row-1,col+1) && board[row-1][col+1] != player && board[row-1][col+1] != EMPTY) {
+		                		  threaten.add(new ThreatenStone((row-1),(col+1)));
+		                	  }
+		                	  //left
+		                	  if (onBoard(row,col-1) && board[row][col-1] != player && board[row][col-1] != EMPTY) {
+		                		  threaten.add(new ThreatenStone((row),(col-1)));
+		                	  }
+		                	  //self
+		                	  threaten.add(new ThreatenStone((row),(col)));
+		                	  //right
+		                	  if (onBoard(row,col+1) && board[row][col+1] != player && board[row][col+1] != EMPTY) {
+		                		  threaten.add(new ThreatenStone((row),(col+1)));
+		                	  }
+		                	  //bottom left
+		                	  if (onBoard(row+1,col-1) && board[row+1][col-1] != player && board[row+1][col-1] != EMPTY) {
+		                		  threaten.add(new ThreatenStone((row+1),(col-1)));
+		                	  }
+		                	  //bottom
+		                	  if (onBoard(row+1,col) && board[row+1][col] != player && board[row+1][col] != EMPTY) {
+		                		  threaten.add(new ThreatenStone((row+1),(col)));
+		                	  }
+		                	  //bottom right
+		                	  if (onBoard(row+1,col+1) && board[row+1][col+1] != player && board[row+1][col+1] != EMPTY) {
+		                		  threaten.add(new ThreatenStone((row+1),(col+1)));
+		                	  }
+	                	  }
+	                  }
+	               }
+	           }
+	           
+	                	  
+	                	  
+	           
 	                    
 	                     		
 	        
 	           /* If no threaten pieces have been found, return null.  Otherwise, create
-	          an array just big enough to hold all the threatening pieces, copy these
+	          an array just big enough to hold all the threatened pieces, copy these
 	           from the ArrayList into the array, and return the array. */
 	         
 	         if (threaten.size() == 0)
@@ -346,13 +435,6 @@ import javax.swing.JPanel;
 	      void makeMove(int fromRow, int fromCol, int toRow, int toCol) {
 	    	  board[toRow][toCol] = board[fromRow][fromCol];
 	          board[fromRow][fromCol] = EMPTY;
-	    	  
-	    /*	 Move.player=board[fromRow][fromCol];//???????????????????????????????????????????????
-	         Move.y_start=fromCol;   //??????????????????????????????????????????????????????????????
-	         Move.x_end=toRow;		//??????????????????????????????????????????????????????????????
-	         Move.y_end=fromCol;		//??????????????????????????????????????????????????????????????
-	         Move.x_start=fromRow;		//??????????????????????????????????????????????????????????????
-	         moving.run();		//?????????????????????????????????????????????????????????????? */       
 	      }   
 	      
 	      

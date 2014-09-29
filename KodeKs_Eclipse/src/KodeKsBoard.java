@@ -248,11 +248,11 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 	void doTakeStone(ThreatenStone take) {
 
 		boardState.takeStone(take);
-
+		
 		/* Make sure the board is redrawn in its new state. */
 
 		repaint();
-
+		
 	} // end doTakeStone();
 
 	/**
@@ -303,7 +303,6 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 		 */
 
 		selectedRow = -1;
-
 		/* Make sure the board is redrawn in its new state. */
 
 		repaint();

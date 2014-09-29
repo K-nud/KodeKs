@@ -9,9 +9,7 @@ public class KodeKsToolBar extends JToolBar{
 	
 	private static final long serialVersionUID = 1L;
 	
-	public static JLabel timeLabel;
-	public static JButton toolBarItem_PauseResume;
-	public static GameTimer t = new GameTimer();
+	
 	
 	public KodeKsToolBar(GUI listener, Dimension size){
 		
@@ -25,7 +23,7 @@ public class KodeKsToolBar extends JToolBar{
 		ToolBarItem_NGame.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				new NewGameDialog();
-				GameTimer.resetRunning();
+				
 			}
        	});
 		
@@ -65,17 +63,7 @@ public class KodeKsToolBar extends JToolBar{
 		
 		
 		
-		toolBarItem_PauseResume = new JButton("   Pause   ");
-		toolBarItem_PauseResume.setPreferredSize(new Dimension(128, size.height));
-		toolBarItem_PauseResume.setBorder(BorderFactory.createRaisedBevelBorder());
-		toolBarItem_PauseResume.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				GameTimer.setRunning();
-			}
-		});
 		
-		timeLabel = new JLabel("  " + GameTimer.currentTime + "  ");		
-		t.start();
 
 		setFloatable(false);
 		add(ToolBarItem_NGame);
@@ -84,7 +72,7 @@ public class KodeKsToolBar extends JToolBar{
 		add(ToolBarItem_Resign);
 		
 		add(Box.createHorizontalGlue());
-		add(toolBarItem_PauseResume);
-		add(timeLabel);
+		
+		
 	}
 }

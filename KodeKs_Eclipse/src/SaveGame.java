@@ -24,7 +24,7 @@ public class SaveGame {
 	    int redTokenLeft = KodeKsBoard.NumberOfRedStones;
 	    //int blueTokenLeft = KodeKsBoard.NumberOfBlueStones;
 		//Create the title of the save-file
-	    String saveGameTitle = fixedPlayer1 + "Vs" + fixedPlayer2 + "(" + GameTimer.formatTime(1) + GameTimer.formatTime(2) + ")" + dateFormat.format(date) + ".kdk";
+	    String saveGameTitle = fixedPlayer1 + "Vs" + fixedPlayer2 + dateFormat.format(date) + ".kdk";
 		
 	    /*Saves the the following into a file line-by-line:
 	     * TokenPositionList()
