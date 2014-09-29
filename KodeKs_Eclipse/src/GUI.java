@@ -84,7 +84,7 @@ public class GUI extends JFrame implements ActionListener,MouseListener {
 //****************************************************************************	
 
 
-	    setLocation(screen.width/2-getSize().width/2, screen.height/2-getSize().height/2);
+	   // setLocation(screen.width/2-getSize().width/2, screen.height/2-getSize().height/2);
 		repaint();
 		addMouseListener(this);
 		setVisible(true);
