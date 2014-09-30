@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -13,7 +14,7 @@ import javax.swing.JPanel;
 	    * It knows what kind of piece is on each square of the KodeKsboard.
 	    * Methods are provided to return lists of available legal moves.
 	    */
-	   public class KodeKsData extends JPanel {
+	   public class KodeKsData extends JPanel implements Serializable {
 	       	   
 		private static final long serialVersionUID = 547642L;
 
@@ -32,7 +33,11 @@ import javax.swing.JPanel;
 	* and the row and column of the square to which it is to be moved.
 	* (This class makes no guarantee that the move is legal.)   
 	*/
-		public static class KodeKsMove {
+		public static class KodeKsMove implements Serializable{
+			/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 			int fromRow, fromCol;  // Position of piece to be moved.
 			int toRow, toCol;      // Square it is to move to.
 			KodeKsMove(int r1, int c1, int r2, int c2) {
@@ -49,7 +54,11 @@ import javax.swing.JPanel;
 		* A ThreatenStone object represents an opponents piece which can be taken.
 		* It holds the row and column of that piece that can be taken by the current player.
 		*/      
-		public static class ThreatenStone  {
+		public static class ThreatenStone implements Serializable{
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
 			int threatenRow, threatenCol;      // Position of threaten piece
 			ThreatenStone(int row, int col) {
 				// Constructor.  Just set the values of the instance variables.

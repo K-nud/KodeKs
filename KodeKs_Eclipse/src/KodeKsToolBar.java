@@ -7,10 +7,12 @@ import javax.swing.*;
 
 public class KodeKsToolBar extends JToolBar{
 	
+	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-	
-	
-	
+
 	public KodeKsToolBar(GUI listener, Dimension size){
 		
 		setPreferredSize(size);

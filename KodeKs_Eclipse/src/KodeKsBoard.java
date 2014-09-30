@@ -24,7 +24,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 
 	private static final long serialVersionUID = 12341234L;
 
-	static KodeKsData boardState; // The data for the KodeKs board is kept here.
+	KodeKsData boardState; // The data for the KodeKs board is kept here.
 									// This board is also responsible for
 									// generating lists of legal moves.
 	protected static JLabel message; // a message label which shows who's turn
