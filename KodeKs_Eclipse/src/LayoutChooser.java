@@ -96,7 +96,7 @@ public class LayoutChooser extends AbstractAction implements ActionListener, Act
 				e1.printStackTrace();
 			}
 		
-		  SwingUtilities.updateComponentTreeUI(RunKodeKs.main);
+		  SwingUtilities.updateComponentTreeUI(RunKodeKs.mainGUI);
 		  
 	}
 	@Override

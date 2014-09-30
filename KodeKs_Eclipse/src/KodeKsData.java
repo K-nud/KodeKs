@@ -22,7 +22,7 @@ import javax.swing.JPanel;
         on the board.  The constants RED and BLUE also represent players
         in the game. */
 		int[][] board;  // board[r][c] is the contents of row r, column c.  
-	    private static ArrayList<KodeKsMove> moves;  
+	    static ArrayList<KodeKsMove> moves;  
 	    private static ArrayList<ThreatenStone> threaten;
 	    public static Move moving=new Move();
 
@@ -206,8 +206,8 @@ import javax.swing.JPanel;
 	       * @return ArrayList of threaten pieces of the opponent player
 	       */
 	      
-		ThreatenStone[] getThreatenStone(int player) {
-	         boolean laserEndpointFound = false;
+	 ThreatenStone[] getThreatenStone(int player) {
+	         
 	         
 	         if (player != RED && player != BLUE)
 	            return null;
@@ -224,6 +224,7 @@ import javax.swing.JPanel;
 	               for (int col = 0; col < 10; col++) {
 	                  if (board[row][col] == player) {
 	                	  int range=0;
+	                	  boolean laserEndpointFound = false;
 	                	  
 	                     	if (row+1<10 && pieceAt(row+1,col) == player){
 	                     		range=((fieldvalue[row][col]) + (fieldvalue[row+1][col]));

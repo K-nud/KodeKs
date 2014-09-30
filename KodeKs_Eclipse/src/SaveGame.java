@@ -14,7 +14,7 @@ public class SaveGame {
 	
 	public SaveGame() {
 		//Sets the Format for the Date we use
-		DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy");
+		DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy '-' HH:mm");
 	    Date date = new Date();
 	    fixedPlayer1=new String(KodeKsBoard.Player1Name.getText());
 	    fixedPlayer2=new String(KodeKsBoard.Player2Name.getText());
@@ -31,15 +31,18 @@ public class SaveGame {
 	     */
 		//BufferedWriter writeObject = null;
 		try {
-    		File save = new File(saveGameTitle);
-    		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(save));    		
-    		oos.writeObject(RunKodeKs.main);
-    		oos.writeObject(KodeKsBoard.board);
+    		File file = new File(saveGameTitle);
+    		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));    		
     		oos.writeObject(GUI.board.boardState);
-    		oos.writeObject(GUI.analysePanel);  		
-    		oos.writeObject(GUI.statusPanel);
-    		oos.writeObject(GUI.board.Player1_Stones);
-    		oos.writeObject(GUI.board.Player2_Stones);
+    		oos.writeObject(KodeKsBoard.currentPlayer);
+    		oos.writeObject(KodeKsBoard.Player1Name);
+    		oos.writeObject(KodeKsBoard.Player2Name);
+    		oos.writeObject(RunKodeKs.mainGUI.board.boardState);
+    		
+//    		oos.writeObject(GUI.analysePanel);  		
+//    		oos.writeObject(GUI.statusPanel);
+//    		oos.writeObject(GUI.board.Player1_Stones);
+//    		oos.writeObject(GUI.board.Player2_Stones);
     		
     		oos.close();
     	}
@@ -51,16 +54,6 @@ public class SaveGame {
 		
 	}
 	
-	//Saves the positioning of the tokens within a String
 	
-	static String getTokenPositionList() {
-		String tokenPositionList = "";
-        for (int row = 0; row < 10; row++) {
-           for (int col = 0; col < 10; col++) {
-        	   tokenPositionList = tokenPositionList + GUI.board.boardState.pieceAt(row, col);
-           }
-        }
-        return tokenPositionList;
-     }  // end saveTokenPosition()
 
 }

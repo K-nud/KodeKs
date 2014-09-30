@@ -56,7 +56,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 	// containing that piece. If no piece is
 	// yet selected, then selectedRow is -1.
 
-	ThreatenStone[] getThreatenStones; // An array containing the threaten
+	static ThreatenStone[] getThreatenStones; // An array containing the threaten
 										// stones by the current player.
 
 	KodeKsMove[] legalMoves; // An array containing the legal moves for the
@@ -118,7 +118,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 		addMouseListener(this);
 		message = new JLabel("");
 		message.setAlignmentX(CENTER_ALIGNMENT);
-		message.setFont(new Font("Courier", Font.BOLD, 21));
+		message.setFont(new Font("Courier", Font.BOLD, 32));
 		message.setForeground(Color.BLACK);
 		NumberOfRedStones = boardState.getNumberOfStones(RED);
 		NumberOfBlueStones = boardState.getNumberOfStones(BLUE);
@@ -132,11 +132,11 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 
 		boardState.setUpGame(); // Set up the pieces.
 		Player1_Stones.removeAll();
-		Player1Name = new JLabel("Player 1");
+//		Player1Name = new JLabel("Player 1");
 		Player1Name.setAlignmentX(CENTER_ALIGNMENT);
 		Player1_Stones.add(Player1Name);
 		Player2_Stones.removeAll();
-		Player2Name = new JLabel("Player 2");
+//		Player2Name = new JLabel("Player 2");
 		Player2Name.setAlignmentX(CENTER_ALIGNMENT);
 		Player2_Stones.add(Player2Name);
 		currentPlayer = KodeKsData.RED; // RED moves first.
@@ -148,7 +148,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 																// beginning)
 		legalMoves = getLegalMoves(KodeKsData.RED); // Get RED's legal moves.
 		selectedRow = -1; // RED has not yet selected a piece to move.
-		message.setText("Red:  Make your move.");
+		message.setText(Player1Name.getText() + ": Make your move.");
 		NumberOfRedStones = getNumberOfStones(RED);
 		NumberOfBlueStones = getNumberOfStones(BLUE);
 		gameInProgress = true;
@@ -199,9 +199,9 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 				selectedRow = row;
 				selectedCol = col;
 				if (currentPlayer == KodeKsData.RED)
-					message.setText("RED:  Make your move.");
+					message.setText(Player1Name.getText() +": Make your move.");
 				else
-					message.setText("BLUE:  Make your move.");
+					message.setText(Player2Name.getText() +": Make your move.");
 				repaint();
 				return;
 			}
@@ -284,7 +284,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 			if (NumberOfBlueStones <= 4)
 				GUI.gameOver(RED);
 			else
-				message.setText("BLUE:  Make your move.");
+				message.setText(Player2Name.getText() +": Make your move.");
 		} else {
 			currentPlayer = KodeKsData.RED;
 			getThreatenStones = boardState.getThreatenStone(currentPlayer);
@@ -294,7 +294,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 			if (NumberOfRedStones <= 4)
 				GUI.gameOver(BLUE);
 			else
-				message.setText("RED:  Make your move.");
+				message.setText(Player1Name.getText() +": Make your move.");
 		}
 
 		/*
@@ -418,7 +418,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 		}
 
 		/*
-		 * If a game is in progress, hilite the legal moves and the possible
+		 * If a game is in progress, highlight the legal moves and the possible
 		 * Pieces to take. Note that legalMoves is never null while a game is in
 		 * progress.
 		 */

@@ -1,18 +1,23 @@
 import java.awt.EventQueue;
+import java.io.Serializable;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 
-public class RunKodeKs {
-static GUI main;
+public class RunKodeKs implements Serializable {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+static GUI mainGUI;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					
-					main=new GUI(new KodeKsData());
+					mainGUI=new GUI(new KodeKsData());
 					try {
 						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					} catch (ClassNotFoundException | InstantiationException
@@ -20,8 +25,8 @@ static GUI main;
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					SwingUtilities.updateComponentTreeUI(main);
-					main.setVisible(true);
+					SwingUtilities.updateComponentTreeUI(mainGUI);
+					mainGUI.setVisible(true);
 					
 				} catch (Exception e) {
 					e.printStackTrace();

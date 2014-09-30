@@ -32,7 +32,7 @@ import javax.swing.JPanel;
 			yes = new JButton("Yes");
 			yes.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
-					RunKodeKs.main.dispose();
+					RunKodeKs.mainGUI.dispose();
 					dispose();
 					}
 			});

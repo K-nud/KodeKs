@@ -36,7 +36,7 @@ public class GameOverPopup extends PopupWindow
 		});
 		exit.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				RunKodeKs.main.quitDlg();	       	}
+				RunKodeKs.mainGUI.quitDlg();	       	}
 		});
 		newGame.addActionListener(parent);
 		exit.addActionListener(parent);

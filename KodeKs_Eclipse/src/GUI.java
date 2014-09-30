@@ -8,13 +8,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.Serializable;
 
 /**
  * 
  * @author Knud Vogel
  *
  */
-public class GUI extends JFrame implements ActionListener,MouseListener {
+public class GUI extends JFrame implements ActionListener,MouseListener, Serializable {
 	
 	private static final long serialVersionUID = 42;
 	
@@ -44,14 +45,14 @@ public class GUI extends JFrame implements ActionListener,MouseListener {
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension boardSize = new Dimension(824,768);
 		Dimension toolBarSize = new Dimension(1024,24);
-		Dimension analysePanelSize = new Dimension(275,768);
-		Dimension statusPanelSize = new Dimension(1024, 90);
+		Dimension analysePanelSize = new Dimension(275,760);
+		Dimension statusPanelSize = new Dimension(755, 200);
 		
 	
 		
 //"this" Main Frame***********************************************************
 		setLayout(new BorderLayout());
-		setResizable(false);
+		setResizable(true);
 //****************************************************************************
 
 /**
@@ -74,8 +75,8 @@ public class GUI extends JFrame implements ActionListener,MouseListener {
 //****************************************************************************
 		  
 //StatusPanel******************************************************************
-	  	  	statusPanel = new StatusPanel(boardState, this, statusPanelSize);
-	  	  	board.add(statusPanel,BorderLayout.SOUTH);
+	   	statusPanel = new StatusPanel(boardState, this, statusPanelSize);
+	  	board.add(statusPanel,BorderLayout.SOUTH);
 //****************************************************************************	
 	  	  	
 //AnalysePanel******************************************************************
@@ -84,7 +85,7 @@ public class GUI extends JFrame implements ActionListener,MouseListener {
 //****************************************************************************	
 
 
-	   // setLocation(screen.width/2-getSize().width/2, screen.height/2-getSize().height/2);
+	    setLocation(screen.width/2-512, screen.height/2-512);
 		repaint();
 		addMouseListener(this);
 		setVisible(true);
@@ -130,9 +131,9 @@ public class GUI extends JFrame implements ActionListener,MouseListener {
 	public static void gameOver(int outcome)
 	{
 		if(outcome==1)
-			gameOver = new GameOverPopup(RunKodeKs.main, "Red Win");
+			gameOver = new GameOverPopup(RunKodeKs.mainGUI, "Red Win");
 		else if(outcome==2)
-			gameOver = new GameOverPopup(RunKodeKs.main, "Blue Win");
+			gameOver = new GameOverPopup(RunKodeKs.mainGUI, "Blue Win");
 		board.gameInProgress=false;
 		gameOver.setVisible(true);
 	}

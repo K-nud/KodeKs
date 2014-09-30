@@ -52,9 +52,9 @@ public class NewGameDialog implements ActionListener {
 	   	 public void actionPerformed(ActionEvent e){   		
 	   		 
 	   	
-	   		GUI.board.doNewGame();	 
+ 
 	   		GUI.analysePanel.clearAnalyse();
-	   		RunKodeKs.main.repaint();
+	   		RunKodeKs.mainGUI.repaint();
 	   		
 	   		KodeKsBoard.Player1Name.setText(nameP1.getText());
 	   		KodeKsBoard.Player2Name.setText(nameP2.getText());
@@ -64,6 +64,8 @@ public class NewGameDialog implements ActionListener {
 	   		StatusPanel.Player2Name.setText(nameP2.getText());
 	   		StatusPanel.rStones.setText("14");
 	   		StatusPanel.bStones.setText("14");
+	   		
+	   		GUI.board.doNewGame();	
 	   		
 	   		
 	   		newgame.dispose();

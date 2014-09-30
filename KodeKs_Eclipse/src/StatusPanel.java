@@ -30,6 +30,7 @@ public class StatusPanel extends JPanel implements Serializable{
 	JPanel messagePanel=new JPanel();
 	add(messagePanel);
 	messagePanel.add(KodeKsBoard.message);
+	setPreferredSize(size);
 	
 	JPanel statPanel = new JPanel();
 	add(statPanel);
