@@ -1,6 +1,12 @@
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.DataLine;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -191,7 +197,21 @@ import javax.swing.JPanel;
 	    			  point.setIcon(iconP2);
 	    			  GUI.board.Player2_Stones.add(point);
 	    		  }	 
-	    	  
+	    		  try{
+	    	            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("F:/Users/Knud/Documents/GitHub/KodeKs/KodeKs_Eclipse/src/Glass_Break.wav"));
+	    	            AudioFormat af     = audioInputStream.getFormat();
+	    	            int size      = (int) (af.getFrameSize() * audioInputStream.getFrameLength());
+	    	            byte[] audio       = new byte[size];
+	    	            DataLine.Info info      = new DataLine.Info(Clip.class, af, size);
+	    	            audioInputStream.read(audio, 0, size);
+	    	           
+	    	            Clip clip = (Clip) AudioSystem.getLine(info);
+	    	            clip.open(af, audio, 0, size);
+	    	            clip.start();
+	    	           
+	    	        }catch(Exception e){ e.printStackTrace(); }
+	    	 
+	    	         
 	    	KodeKsBoard.NumberOfRedStones=GUI.board.getNumberOfStones(RED);//recount the left pieces of each player
 	    	KodeKsBoard.NumberOfBlueStones=GUI.board.getNumberOfStones(BLUE);
 	    	  }
@@ -211,7 +231,7 @@ import javax.swing.JPanel;
 	         
 	         if (player != RED && player != BLUE)
 	            return null;
-	             
+	           
 	         threaten = new ArrayList<ThreatenStone>();  // Threats will be stored in this list.
 	                 
 	         /*  
@@ -235,6 +255,7 @@ import javax.swing.JPanel;
 	                     						threaten.add(new ThreatenStone((row+1)+i,col));
 	                     						laserEndpointFound = true;
 	                     					}
+	                     			
 	                     		}
 	                     	}
 	                     	if (col+1<10 && pieceAt(row,col+1) == player){
