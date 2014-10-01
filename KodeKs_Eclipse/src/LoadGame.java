@@ -44,7 +44,7 @@ public class LoadGame {
 		}
 		
 		KodeKsBoard.currentPlayer = currentPlayer;
-		RunKodeKs.mainGUI.board.boardState = stateofdatboard;
+		GUI.board.boardState = stateofdatboard;
 //		KodeKsBoard.getThreatenStones = KodeKsData.getThreatenStone(currentPlayer);
 		RunKodeKs.mainGUI.repaint();
 		

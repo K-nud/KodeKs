@@ -14,7 +14,7 @@ public class SaveGame {
 	
 	public SaveGame() {
 		//Sets the Format for the Date we use
-		DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy '-' HH:mm");
+		DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy'-'HH'-'mm");
 	    Date date = new Date();
 	    fixedPlayer1=new String(KodeKsBoard.Player1Name.getText());
 	    fixedPlayer2=new String(KodeKsBoard.Player2Name.getText());
@@ -37,7 +37,7 @@ public class SaveGame {
     		oos.writeObject(KodeKsBoard.currentPlayer);
     		oos.writeObject(KodeKsBoard.Player1Name);
     		oos.writeObject(KodeKsBoard.Player2Name);
-    		oos.writeObject(RunKodeKs.mainGUI.board.boardState);
+    		oos.writeObject(GUI.board.boardState);
     		
 //    		oos.writeObject(GUI.analysePanel);  		
 //    		oos.writeObject(GUI.statusPanel);
