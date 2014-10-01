@@ -12,9 +12,10 @@ public class LoadGame {
 	JLabel player1Name;
 	JLabel player2Name;
 	KodeKsData stateofdatboard;
+	JLabel message;
 	
 	
-	
+	@SuppressWarnings("static-access")
 	public LoadGame() {
 		//Create JFileChooser-Object
 		JFileChooser load = new JFileChooser();
@@ -27,26 +28,31 @@ public class LoadGame {
 
 			FileInputStream is = new FileInputStream(loadGameTitle);
     		ObjectInputStream ois = new ObjectInputStream(is);
-    //		GUI.kodeksGUI = (GUI) ois.readObject();
     		GUI.board.boardState = (KodeKsData)ois.readObject();
     		KodeKsBoard.currentPlayer = (int)ois.readObject();
-    		KodeKsBoard.Player1Name = (JLabel)ois.readObject();
-    		KodeKsBoard.Player2Name = (JLabel)ois.readObject();
+    		player1Name = (JLabel)ois.readObject();
+    		player2Name = (JLabel)ois.readObject();
     		stateofdatboard = (KodeKsData)ois.readObject();
-//    		GUI.analysePanel= (AnalysePanel) ois.readObject();
-//    		GUI.statusPanel = (StatusPanel) ois.readObject();
-//    		GUI.board.Player1Name = (JLabel) ois.readObject();
-//    		GUI.board.Player2_Stones = (JPanel) ois.readObject();
+    		message = (JLabel)ois.readObject();
     		
     		ois.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-//		KodeKsBoard.currentPlayer = currentPlayer;
-		GUI.board.boardState = stateofdatboard;
-//		KodeKsBoard.getThreatenStones = KodeKsData.getThreatenStone(currentPlayer);
-		RunKodeKs.mainGUI.repaint();
+		KodeKsBoard.message.setText(message.getText());
+		
+		//apply names to labels
+   		KodeKsBoard.Player1Name.setText(player1Name.getText());
+   		KodeKsBoard.Player2Name.setText(player2Name.getText());
+   		AnalysePanel.Player1Name.setText(player1Name.getText());
+   		AnalysePanel.Player2Name.setText(player2Name.getText());
+   		StatusPanel.Player1Name.setText(player1Name.getText());
+   		StatusPanel.Player2Name.setText(player2Name.getText());
+   		
+   		//update board to properly reflect allowed moves and threatened stones
+		RunKodeKs.mainGUI.board.updateBoard(stateofdatboard);
+		
 		
 		
 		

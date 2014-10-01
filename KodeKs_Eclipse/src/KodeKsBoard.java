@@ -510,6 +510,9 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 	}
 
 	public void updateBoard(KodeKsData boardState) {
+		legalMoves = boardState.getLegalMoves(currentPlayer);
+		getThreatenStones = boardState.getThreatenStone(currentPlayer);
+		repaint();
 		// TODO Auto-generated method stub
 	}
 
