@@ -42,6 +42,10 @@ public class StatusPanel extends JPanel implements Serializable{
 	JLabel P1Stat = new JLabel(iconP1, JLabel.LEFT);
 	leftstat.add(P1Stat);
 	leftstat.add(Player1Name);
+	JLabel P1StonesLeft = new JLabel("|  Stones left:", JLabel.LEFT);
+	leftstat.add(P1StonesLeft);
+	rStones=new JLabel(""+NumberOfRedStones);
+	leftstat.add(rStones);
 	statPanel.add(leftstat);
 	
 	JPanel rightstat=new JPanel();
@@ -50,22 +54,26 @@ public class StatusPanel extends JPanel implements Serializable{
 	JLabel P2Stat = new JLabel(iconP2, JLabel.LEFT );
 	rightstat.add(P2Stat);
 	rightstat.add(Player2Name);
+	JLabel P2StonesLeft = new JLabel("|  Stones left:", JLabel.LEFT);
+	rightstat.add(P2StonesLeft);
+	bStones=new JLabel(""+NumberOfRedStones);
+	rightstat.add(bStones);
 	statPanel.add(rightstat);
 	
-	JPanel leftbottom=new JPanel();
-	JLabel P1StonesLeft = new JLabel("Stones left: ", JLabel.LEFT);
-	leftbottom.add(P1StonesLeft);
-	rStones=new JLabel(""+NumberOfRedStones);
-	leftbottom.add(rStones);
-	statPanel.add(leftbottom);
+//	JPanel leftbottom=new JPanel();
+//	JLabel P1StonesLeft = new JLabel("Stones left: ", JLabel.LEFT);
+//	leftstat.add(P1StonesLeft);
+//	rStones=new JLabel(""+NumberOfRedStones);
+//	leftstat.add(rStones);
+//	statPanel.add(leftbottom);
 	
-	JPanel rightbottom=new JPanel();
-	JLabel P2StonesLeft = new JLabel( "Stones left: ", JLabel.LEFT );
-	rightbottom.add(P2StonesLeft);
-	bStones=new JLabel(""+NumberOfRedStones);
-	rightbottom.add(bStones);
-	statPanel.add(rightbottom);
-	
+//	JPanel rightbottom=new JPanel();
+//	JLabel P2StonesLeft = new JLabel( "Stones left: ", JLabel.LEFT );
+//	rightbottom.add(P2StonesLeft);
+//	bStones=new JLabel(""+NumberOfRedStones);
+//	rightbottom.add(bStones);
+//	statPanel.add(rightbottom);
+//	
 	}
 }
 		

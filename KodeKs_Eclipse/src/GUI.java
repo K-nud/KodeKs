@@ -46,13 +46,13 @@ public class GUI extends JFrame implements ActionListener,MouseListener, Seriali
 		Dimension boardSize = new Dimension(824,768);
 		Dimension toolBarSize = new Dimension(1024,24);
 		Dimension analysePanelSize = new Dimension(275,760);
-		Dimension statusPanelSize = new Dimension(755, 200);
+		Dimension statusPanelSize = new Dimension(755, 110);
 		
 	
 		
 //"this" Main Frame***********************************************************
 		setLayout(new BorderLayout());
-		setResizable(true);
+		setResizable(false);
 //****************************************************************************
 
 /**

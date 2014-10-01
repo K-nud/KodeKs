@@ -29,9 +29,9 @@ public class LoadGame {
     		ObjectInputStream ois = new ObjectInputStream(is);
     //		GUI.kodeksGUI = (GUI) ois.readObject();
     		GUI.board.boardState = (KodeKsData)ois.readObject();
-    		currentPlayer = (int)ois.readObject();
-    		player1Name = (JLabel)ois.readObject();
-    		player2Name = (JLabel)ois.readObject();
+    		KodeKsBoard.currentPlayer = (int)ois.readObject();
+    		KodeKsBoard.Player1Name = (JLabel)ois.readObject();
+    		KodeKsBoard.Player2Name = (JLabel)ois.readObject();
     		stateofdatboard = (KodeKsData)ois.readObject();
 //    		GUI.analysePanel= (AnalysePanel) ois.readObject();
 //    		GUI.statusPanel = (StatusPanel) ois.readObject();
@@ -43,7 +43,7 @@ public class LoadGame {
 			e.printStackTrace();
 		}
 		
-		KodeKsBoard.currentPlayer = currentPlayer;
+//		KodeKsBoard.currentPlayer = currentPlayer;
 		GUI.board.boardState = stateofdatboard;
 //		KodeKsBoard.getThreatenStones = KodeKsData.getThreatenStone(currentPlayer);
 		RunKodeKs.mainGUI.repaint();
