@@ -198,7 +198,7 @@ import javax.swing.JPanel;
 	    			  GUI.board.Player2_Stones.add(point);
 	    		  }	 
 	    		  try{
-	    	            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("F:/Users/Knud/Documents/GitHub/KodeKs/KodeKs_Eclipse/src/Glass_Break.wav"));
+	    	            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("res/Glass_Break.wav"));
 	    	            AudioFormat af     = audioInputStream.getFormat();
 	    	            int size      = (int) (af.getFrameSize() * audioInputStream.getFrameLength());
 	    	            byte[] audio       = new byte[size];
