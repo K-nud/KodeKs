@@ -30,6 +30,7 @@ import javax.swing.JPanel;
 		int[][] board;  // board[r][c] is the contents of row r, column c.  
 	    static ArrayList<KodeKsMove> moves;  
 	    private static ArrayList<ThreatenStone> threaten;
+	    private static ArrayList<LaserField> laserFields;
 	    public static Move moving=new Move();
 
 	
@@ -72,6 +73,21 @@ import javax.swing.JPanel;
 				threatenCol = col;   
 			}
 		}  // end class ThreatenStone
+		
+		
+		public static class LaserField implements Serializable{
+			
+			private static final long serialVersionUID = 1L;
+			int row, column;
+			String orientation; //orientation can be "horizontal", "vertical", "diagonalNW" or "diagonalNE"
+			
+			LaserField(int x, int y, String z) {
+				row = x;
+				column = y;
+				orientation = z;
+			}
+			
+		}
 
 		
 		/*
@@ -232,7 +248,13 @@ import javax.swing.JPanel;
 	         if (player != RED && player != BLUE)
 	            return null;
 	           
-	         threaten = new ArrayList<ThreatenStone>();  // Threats will be stored in this list.
+	         threaten = new ArrayList<ThreatenStone>();  //reset list of threatened stones
+	         laserFields = new ArrayList<LaserField>();	 //reset list of fields filled with lasers
+	         //This list holds lasers that may or may not connect to a stone, if no connection is made.
+	         //If a connection is made, this list will be added to laserFields. If not, the list will be scrapped.
+	         ArrayList<LaserField> potentialLaserFields; 
+	         
+	         
 	                 
 	         /*  
 	          If that square contains one of the player's pieces, look at a possible
@@ -243,95 +265,137 @@ import javax.swing.JPanel;
 	           for (int row = 0; row < 10; row++) {
 	               for (int col = 0; col < 10; col++) {
 	                  if (board[row][col] == player) {
-	                	  int range=0;
-	                	  boolean laserEndpointFound = false;
+	                	  int range=0;							//reset laser range for every new stone
+	                	  boolean laserEndpointFound = false;	//reset final laser position for every new stone
+	                	  potentialLaserFields = new ArrayList<LaserField>();	//reset list of potential lasers for each new stone
 	                	  
 	                     	if (row+1<10 && pieceAt(row+1,col) == player){
 	                     		range=((fieldvalue[row][col]) + (fieldvalue[row+1][col]));
 	                     		for (int i=1; i<=range && laserEndpointFound == false; i++){
-	                     			if (onBoard((row+1)+i,col))
-	                     				if (pieceAt((row+1)+i,col) != EMPTY)
+	                     			if (onBoard((row+1)+i,col)){
+	                     				if (pieceAt((row+1)+i, col) == EMPTY){
+	                     					potentialLaserFields.add(new LaserField((row + 1 +i), col, "vertical"));
+	                     					
+	                     				}
+	                     				else if (pieceAt((row+1)+i,col) != EMPTY)
 	                     					if (canTakeThreatenStone(player,(row+1)+i,col)){
 	                     						threaten.add(new ThreatenStone((row+1)+i,col));
 	                     						laserEndpointFound = true;
+	                     						laserFields.addAll(potentialLaserFields);
 	                     					}
-	                     			
+	                     			}
 	                     		}
 	                     	}
 	                     	if (col+1<10 && pieceAt(row,col+1) == player){
 	                     		range=((fieldvalue[row][col]) + (fieldvalue[row][col+1]));
 	                     		for (int i=1; i<=range && laserEndpointFound == false; i++){
-	                     			if (onBoard(row,(col+1)+i))
-	                     				if (pieceAt(row,(col+1)+i) != EMPTY)
+	                     			if (onBoard(row,(col+1)+i)){
+	                     				if (pieceAt(row,(col+1)+i) == EMPTY){
+	                     					potentialLaserFields.add(new LaserField(row, (col + i + 1), "horizontal"));
+	                     				}
+	                     				else if (pieceAt(row,(col+1)+i) != EMPTY)
 	                     					if (canTakeThreatenStone(player,row,(col+1)+i)){
 	                     						threaten.add(new ThreatenStone(row,(col+1)+i));
 	                     						laserEndpointFound = true;
+	                     						laserFields.addAll(potentialLaserFields);
 	                     					}
 	                     				}
+	                     			}
 	                     		}
 	                     	if (row+1<10 && col+1<10 && pieceAt(row+1,col+1) == player){
 	                     		range=((fieldvalue[row][col]) + (fieldvalue[row+1][col+1]));
 	                     		for (int i=1; i<=range && laserEndpointFound == false; i++){
-	                     			if (onBoard((row+1)+i,(col+1)+i))
-	                     				if (pieceAt((row+1)+i,(col+1)+i) != EMPTY)
+	                     			if (onBoard((row+1)+i,(col+1)+i)){
+	                     				if (pieceAt((row+1)+i,(col+1)+i) == EMPTY){
+	                     					potentialLaserFields.add(new LaserField((row + 1 + i), (col + i + 1), "diagonalNW"));
+	                     				}
+	                     				else if (pieceAt((row+1)+i,(col+1)+i) != EMPTY)
 	                     					if (canTakeThreatenStone(player,(row+1)+i,(col+1)+i)){
 	                     						threaten.add(new ThreatenStone((row+1)+i,(col+1)+i));
 	                     						laserEndpointFound = true;
+	                     						laserFields.addAll(potentialLaserFields);
 	                     					}
+	                     			}
 	                     		}
 	                     	}
 	                     	if (row+1<10 && col-1>=0 && pieceAt(row+1,col-1) == player ){
 	                     		range=((fieldvalue[row][col]) + (fieldvalue[row+1][col-1]));
 	                     		for (int i=1; i<=range && laserEndpointFound == false; i++){
-	                     			if (onBoard((row+1)+i,(col-1)-i))
-	                     				if (pieceAt((row+1)+i,(col-1)-i) != EMPTY)
+	                     			if (onBoard((row+1)+i,(col-1)-i)){
+	                     				if (pieceAt((row+1)+i,(col-1)-i) == EMPTY){
+	                     					potentialLaserFields.add(new LaserField((row + 1 + i), (col - i - 1), "diagonalNE"));
+	                     				}	                     			
+	                     				else if (pieceAt((row+1)+i,(col-1)-i) != EMPTY)
 	                     					if (canTakeThreatenStone(player,(row+1)+i,(col-1)-i)){
 	                     						threaten.add(new ThreatenStone((row+1)+i,(col-1)-i));
 	                     						laserEndpointFound = true;
+	                     						laserFields.addAll(potentialLaserFields);
 	                     					}
+	                     			}
 	                     		}
 	                     	}
 	                     	if (row-1>=0 && col+1<10 && pieceAt((row-1),(col+1)) == player){
 	                     		range=((fieldvalue[row][col]) + (fieldvalue[row-1][col+1]));
 	                     		for (int i=1; i<=range && laserEndpointFound == false; i++){
-	                     			if (onBoard((row-1)-i,(col+1)+i))
-	                     				if (pieceAt((row-1)-i,(col+1)+i) != EMPTY)
+	                     			if (onBoard((row-1)-i,(col+1)+i)){
+	                     				if (pieceAt((row-1)-i,(col+1)+i) == EMPTY){
+	                     					potentialLaserFields.add(new LaserField((row - 1 - i), (col + i + 1), "diagonalNE"));
+	                     				}	 
+	                     				else if (pieceAt((row-1)-i,(col+1)+i) != EMPTY)
 	                     					if (canTakeThreatenStone(player,(row-1)-i,(col+1)+i)){
 	                     						threaten.add(new ThreatenStone((row-1)-i,(col+1)+i));
 	                     						laserEndpointFound = true;
+	                     						laserFields.addAll(potentialLaserFields);
 	                     					}
+	                     			}
 	                     		}
 	                     	}
 	                     	if (row-1>=0 && pieceAt(row-1,col) == player){
 	                     		range=((fieldvalue[row][col]) + (fieldvalue[row-1][col]));
 	                     		for (int i=1; i<=range && laserEndpointFound == false; i++){
-	                     			if (onBoard((row-1)-i,col))
-	                     				if (pieceAt((row-1)-i,col) != EMPTY)
+	                     			if (onBoard((row-1)-i,col)){
+	                     				if (pieceAt((row-1)-i,col) == EMPTY){
+	                     					potentialLaserFields.add(new LaserField((row - 1 - i), col, "vertical"));
+	                     				}	
+	                     				else if (pieceAt((row-1)-i,col) != EMPTY)
 	                     					if (canTakeThreatenStone(player,(row-1)-i,col)){
 	                     						threaten.add(new ThreatenStone((row-1)-i,col));
 	                     						laserEndpointFound = true;
+	                     						laserFields.addAll(potentialLaserFields);
 	                     					}
+	                     			}
 	                     		}
 	                     	}
 	                     	if (col-1>=0 && pieceAt(row,col-1) == player){
 	                     		range=((fieldvalue[row][col]) + (fieldvalue[row][col-1]));
 	                     		for (int i=1; i<=range && laserEndpointFound == false; i++){
-	                     			if (onBoard(row,(col-1)-i))
-	                     				if (pieceAt(row,(col-1)-i) != EMPTY)
+	                     			if (onBoard(row,(col-1)-i)) {
+	                     				if (pieceAt(row,(col-1)-i) == EMPTY){
+	                     					potentialLaserFields.add(new LaserField(row, (col - 1 - i), "horizontal"));
+	                     				}
+	                     				else if (pieceAt(row,(col-1)-i) != EMPTY)
 	                     					if (canTakeThreatenStone(player,row,(col-1)-i)){
 	                     						threaten.add(new ThreatenStone(row,(col-1)-i));
 	                     						laserEndpointFound = true;
+	                     						laserFields.addAll(potentialLaserFields);
 	                     					}
+	                     			}
 	                     		}
 	                     	}
 	                     	if (row-1>=0 && col-1>=0 && pieceAt(row-1,col-1) == player){
 	                     		range=((fieldvalue[row][col]) + (fieldvalue[row-1][col-1]));
 	                     		for (int i=1; i<=range && laserEndpointFound == false; i++){
-	                     			if (onBoard((row-1)-i,(col-1)-i))
-	                     				if (pieceAt((row-1)-i,(col-1)-i) != EMPTY)
+	                     			if (onBoard((row-1)-i,(col-1)-i)){
+	                     				if (pieceAt((row-1)-i,(col-1)-i) == EMPTY){
+	                     					potentialLaserFields.add(new LaserField((row - 1 - i), (col - 1 - i), "diagonalNW"));
+	                     				}
+	                     				else if (pieceAt((row-1)-i,(col-1)-i) != EMPTY)
 	                     					if (canTakeThreatenStone(player,(row-1)-i,(col-1)-i)){
 	                     						threaten.add(new ThreatenStone((row-1)-i,(col-1)-i));
-	                     						laserEndpointFound = true;}
+	                     						laserEndpointFound = true;
+	                     						laserFields.addAll(potentialLaserFields);
+	                     					}
+	                     			}	
 	                     		}
 	                     	}
 	                  }
