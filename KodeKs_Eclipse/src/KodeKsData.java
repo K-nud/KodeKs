@@ -31,6 +31,7 @@ import javax.swing.JPanel;
 	    static ArrayList<KodeKsMove> moves;  
 	    private static ArrayList<ThreatenStone> threaten;
 	    private static ArrayList<LaserField> laserFields;
+	    public static LaserField[] laserFieldsArray;
 	    public static Move moving=new Move();
 
 	
@@ -233,7 +234,12 @@ import javax.swing.JPanel;
 	    	  }
 	      }
 	      
-   
+   LaserField[] getLaserFields() {
+	   
+	   return laserFieldsArray;
+   }
+	      
+	      
 	      /**
 	       * Return an array containing all the threaten stones 
 	       * for the opponent player on the current board.  If the player
@@ -482,8 +488,18 @@ import javax.swing.JPanel;
 	                	  
 	                	  
 	           
-	                    
-	                     		
+	         //fill laserFieldsArray with content.
+	         //this is awfully ugly, make sure to call getThreatenStone before getLaserFields
+	         
+	         if (laserFields.size() == 0 )
+	        	 laserFieldsArray = null;
+	         else {
+	        	 laserFieldsArray = new LaserField[laserFields.size()];
+	        	 for (int i = 0; i < laserFields.size(); i++){
+	        		 laserFieldsArray[i] = laserFields.get(i);
+	        	 }
+	         }
+	           
 	        
 	           /* If no threaten pieces have been found, return null.  Otherwise, create
 	          an array just big enough to hold all the threatened pieces, copy these
