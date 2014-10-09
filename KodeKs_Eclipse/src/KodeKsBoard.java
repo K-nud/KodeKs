@@ -468,16 +468,16 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 					row = laserFields[i].row;
 					
 					if (laserFields[i].orientation == "horizontal"){
-						laserHorizontal.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
+						laserHorizontal.paintIcon(this, g, 132 + col * 50, 26 + row * 50);
 					}
 					else if (laserFields[i].orientation == "vertical"){
-						laserVertical.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
+						laserVertical.paintIcon(this, g, 82 + col * 50, 76 + row * 50);
 					}
 					else if (laserFields[i].orientation == "diagonalNW"){
-						laserDiagonalNW.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
+						laserDiagonalNW.paintIcon(this, g, 132 + col * 50, 26 + (row-1) * 50);
 					}
 					else if (laserFields[i].orientation == "diagonalNE"){
-						laserDiagonalNE.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
+						laserDiagonalNE.paintIcon(this, g, 32 + col * 50, 76 + row * 50);
 					}
 					
 				}
