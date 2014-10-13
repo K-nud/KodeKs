@@ -446,40 +446,40 @@ import javax.swing.JPanel;
 	                		  stonesOwnedInProximity++;
 	                	  }
 	                	  if (stonesOwnedInProximity > 1){
-	                		  //top left
-		                	  if (onBoard(row-1,col-1) && board[row-1][col-1] != player && board[row-1][col-1] != EMPTY) {
-		                		  threaten.add(new ThreatenStone((row-1),(col-1)));
-		                	  }
-		                	  //top 
-		                	  if (onBoard(row-1,col) && board[row-1][col] != player && board[row-1][col] != EMPTY) {
-		                		  threaten.add(new ThreatenStone((row-1),(col)));
-		                	  }
-		                	  //top right
-		                	  if (onBoard(row-1,col+1) && board[row-1][col+1] != player && board[row-1][col+1] != EMPTY) {
-		                		  threaten.add(new ThreatenStone((row-1),(col+1)));
-		                	  }
-		                	  //left
-		                	  if (onBoard(row,col-1) && board[row][col-1] != player && board[row][col-1] != EMPTY) {
-		                		  threaten.add(new ThreatenStone((row),(col-1)));
-		                	  }
+//	                		  //top left
+//		                	  if (onBoard(row-1,col-1) && board[row-1][col-1] != player && board[row-1][col-1] != EMPTY) {
+//		                		  threaten.add(new ThreatenStone((row-1),(col-1)));
+//		                	  }
+//		                	  //top 
+//		                	  if (onBoard(row-1,col) && board[row-1][col] != player && board[row-1][col] != EMPTY) {
+//		                		  threaten.add(new ThreatenStone((row-1),(col)));
+//		                	  }
+//		                	  //top right
+//		                	  if (onBoard(row-1,col+1) && board[row-1][col+1] != player && board[row-1][col+1] != EMPTY) {
+//		                		  threaten.add(new ThreatenStone((row-1),(col+1)));
+//		                	  }
+//		                	  //left
+//		                	  if (onBoard(row,col-1) && board[row][col-1] != player && board[row][col-1] != EMPTY) {
+//		                		  threaten.add(new ThreatenStone((row),(col-1)));
+//		                	  }
 		                	  //self
 		                	  threaten.add(new ThreatenStone((row),(col)));
-		                	  //right
-		                	  if (onBoard(row,col+1) && board[row][col+1] != player && board[row][col+1] != EMPTY) {
-		                		  threaten.add(new ThreatenStone((row),(col+1)));
-		                	  }
-		                	  //bottom left
-		                	  if (onBoard(row+1,col-1) && board[row+1][col-1] != player && board[row+1][col-1] != EMPTY) {
-		                		  threaten.add(new ThreatenStone((row+1),(col-1)));
-		                	  }
-		                	  //bottom
-		                	  if (onBoard(row+1,col) && board[row+1][col] != player && board[row+1][col] != EMPTY) {
-		                		  threaten.add(new ThreatenStone((row+1),(col)));
-		                	  }
-		                	  //bottom right
-		                	  if (onBoard(row+1,col+1) && board[row+1][col+1] != player && board[row+1][col+1] != EMPTY) {
-		                		  threaten.add(new ThreatenStone((row+1),(col+1)));
-		                	  }
+//		                	  //right
+//		                	  if (onBoard(row,col+1) && board[row][col+1] != player && board[row][col+1] != EMPTY) {
+//		                		  threaten.add(new ThreatenStone((row),(col+1)));
+//		                	  }
+//		                	  //bottom left
+//		                	  if (onBoard(row+1,col-1) && board[row+1][col-1] != player && board[row+1][col-1] != EMPTY) {
+//		                		  threaten.add(new ThreatenStone((row+1),(col-1)));
+//		                	  }
+//		                	  //bottom
+//		                	  if (onBoard(row+1,col) && board[row+1][col] != player && board[row+1][col] != EMPTY) {
+//		                		  threaten.add(new ThreatenStone((row+1),(col)));
+//		                	  }
+//		                	  //bottom right
+//		                	  if (onBoard(row+1,col+1) && board[row+1][col+1] != player && board[row+1][col+1] != EMPTY) {
+//		                		  threaten.add(new ThreatenStone((row+1),(col+1)));
+//		                	  }
 	                	  }
 	                  }
 	               }
