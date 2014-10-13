@@ -25,8 +25,8 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 	private static final long serialVersionUID = 12341234L;
 
 	KodeKsData boardState; // The data for the KodeKs board is kept here.
-									// This board is also responsible for
-									// generating lists of legal moves.
+							// This board is also responsible for
+							// generating lists of legal moves.
 	protected static JLabel message; // a message label which shows who's turn
 										// it is
 
@@ -56,8 +56,9 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 	// containing that piece. If no piece is
 	// yet selected, then selectedRow is -1.
 
-	static ThreatenStone[] getThreatenStones; // An array containing the threaten
-										// stones by the current player.
+	static ThreatenStone[] getThreatenStones; // An array containing the
+												// threaten
+	// stones by the current player.
 
 	KodeKsMove[] legalMoves; // An array containing the legal moves for the
 								// current player.
@@ -132,11 +133,11 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 
 		boardState.setUpGame(); // Set up the pieces.
 		Player1_Stones.removeAll();
-//		Player1Name = new JLabel("Player 1");
+		// Player1Name = new JLabel("Player 1");
 		Player1Name.setAlignmentX(CENTER_ALIGNMENT);
 		Player1_Stones.add(Player1Name);
 		Player2_Stones.removeAll();
-//		Player2Name = new JLabel("Player 2");
+		// Player2Name = new JLabel("Player 2");
 		Player2Name.setAlignmentX(CENTER_ALIGNMENT);
 		Player2_Stones.add(Player2Name);
 		currentPlayer = KodeKsData.RED; // RED moves first.
@@ -199,9 +200,9 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 				selectedRow = row;
 				selectedCol = col;
 				if (currentPlayer == KodeKsData.RED)
-					message.setText(Player1Name.getText() +": Make your move.");
+					message.setText(Player1Name.getText() + ": Make your move.");
 				else
-					message.setText(Player2Name.getText() +": Make your move.");
+					message.setText(Player2Name.getText() + ": Make your move.");
 				repaint();
 				return;
 			}
@@ -248,11 +249,11 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 	void doTakeStone(ThreatenStone take) {
 
 		boardState.takeStone(take);
-		
+
 		/* Make sure the board is redrawn in its new state. */
 
 		repaint();
-		
+
 	} // end doTakeStone();
 
 	/**
@@ -284,7 +285,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 			if (NumberOfBlueStones <= 4)
 				GUI.gameOver(RED);
 			else
-				message.setText(Player2Name.getText() +": Make your move.");
+				message.setText(Player2Name.getText() + ": Make your move.");
 		} else {
 			currentPlayer = KodeKsData.RED;
 			getThreatenStones = boardState.getThreatenStone(currentPlayer);
@@ -294,7 +295,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 			if (NumberOfRedStones <= 4)
 				GUI.gameOver(BLUE);
 			else
-				message.setText(Player1Name.getText() +": Make your move.");
+				message.setText(Player1Name.getText() + ": Make your move.");
 		}
 
 		/*
@@ -382,7 +383,6 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 			}
 		}
 
-		
 		/*
 		 * If a game is in progress, highlight the legal moves and the possible
 		 * Pieces to take. Note that legalMoves is never null while a game is in
@@ -400,8 +400,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 							74 + getThreatenStones[i].threatenRow * 50, 45, 45);
 				}
 			}
-			
-			
+
 			/*
 			 * Second, draw a 2-pixel cyan border around the pieces that can be
 			 * moved.
@@ -430,7 +429,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 					}
 				}
 			}
-			
+
 			/*
 			 * (Draw the fieldvalues on the board) Load the images of the
 			 * fieldvalues and set them up like given in KodeKsData
@@ -444,73 +443,82 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 					 * col*50, 105 + row*50);
 					 */
 					if (fieldvalue[row][col] == 1) {
-						ImageIcon one = new ImageIcon(getClass().getClassLoader()
-								.getResource("1.png"));
+						ImageIcon one = new ImageIcon(getClass()
+								.getClassLoader().getResource("1.png"));
 						one.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
 					}
 					if (fieldvalue[row][col] == 2) {
-						ImageIcon two = new ImageIcon(getClass().getClassLoader()
-								.getResource("2.png"));
+						ImageIcon two = new ImageIcon(getClass()
+								.getClassLoader().getResource("2.png"));
 						two.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
 					}
 					if (fieldvalue[row][col] == 3) {
-						ImageIcon three = new ImageIcon(getClass().getClassLoader()
-								.getResource("3.png"));
+						ImageIcon three = new ImageIcon(getClass()
+								.getClassLoader().getResource("3.png"));
 						three.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
 					}
 					if (fieldvalue[row][col] == 4) {
-						ImageIcon four = new ImageIcon(getClass().getClassLoader()
-								.getResource("4.png"));
+						ImageIcon four = new ImageIcon(getClass()
+								.getClassLoader().getResource("4.png"));
 						four.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
 					}
 				}
 			}
-			
+
 			/*
-			 * lastly, put lasers onto the board where indicated by KodeKsData.laserFields 
+			 * lastly, put lasers onto the board where indicated by
+			 * KodeKsData.laserFields
 			 */
 			LaserField[] laserFields = getLaserFields();
-			
+
 			ImageIcon laserHorizontal;
 			ImageIcon laserVertical;
-			ImageIcon laserDiagonalNW; 
+			ImageIcon laserDiagonalNW;
 			ImageIcon laserDiagonalNE;
-			
+
 			int laserCol;
 			int laserRow;
 
 			if (laserFields != null) {
-				if (currentPlayer == BLUE){
-					 laserHorizontal = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_blue_hor.gif"));
-					 laserVertical = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_blue_vert.gif"));
-					 laserDiagonalNW = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_blue_diag1.gif"));
-					 laserDiagonalNE = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_blue_diag2.gif"));
+				if (currentPlayer == BLUE) {
+					laserHorizontal = new ImageIcon(getClass().getClassLoader()
+							.getResource("Laser_Animated_blue_hor.gif"));
+					laserVertical = new ImageIcon(getClass().getClassLoader()
+							.getResource("Laser_Animated_blue_vert.gif"));
+					laserDiagonalNW = new ImageIcon(getClass().getClassLoader()
+							.getResource("Laser_Animated_blue_diag1.gif"));
+					laserDiagonalNE = new ImageIcon(getClass().getClassLoader()
+							.getResource("Laser_Animated_blue_diag2.gif"));
+				} else {
+					laserHorizontal = new ImageIcon(getClass().getClassLoader()
+							.getResource("Laser_Animated_red_hor.gif"));
+					laserVertical = new ImageIcon(getClass().getClassLoader()
+							.getResource("Laser_Animated_red_vert.gif"));
+					laserDiagonalNW = new ImageIcon(getClass().getClassLoader()
+							.getResource("Laser_Animated_red_diag1.gif"));
+					laserDiagonalNE = new ImageIcon(getClass().getClassLoader()
+							.getResource("Laser_Animated_red_diag2.gif"));
 				}
-				else {
-					 laserHorizontal = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_red_hor.gif"));
-					 laserVertical = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_red_vert.gif"));
-					 laserDiagonalNW = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_red_diag1.gif"));
-					 laserDiagonalNE = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_red_diag2.gif"));					
-				}
-				
-				for (int i = 0; i < laserFields.length; i++){
-					
+
+				for (int i = 0; i < laserFields.length; i++) {
+
 					laserCol = laserFields[i].column;
 					laserRow = laserFields[i].row;
-					
-					if (laserFields[i].orientation == "horizontal"){
-						laserHorizontal.paintIcon(this, g, 123 + laserCol * 50, 67 + laserRow * 50);
+
+					if (laserFields[i].orientation == "horizontal") {
+						laserHorizontal.paintIcon(this, g, 123 + laserCol * 50,
+								67 + laserRow * 50);
+					} else if (laserFields[i].orientation == "vertical") {
+						laserVertical.paintIcon(this, g, 123 + laserCol * 50,
+								67 + laserRow * 50);
+					} else if (laserFields[i].orientation == "diagonalNW") {
+						laserDiagonalNW.paintIcon(this, g, 123 + laserCol * 50,
+								67 + laserRow * 50);
+					} else if (laserFields[i].orientation == "diagonalNE") {
+						laserDiagonalNE.paintIcon(this, g, 123 + laserCol * 50,
+								67 + laserRow * 50);
 					}
-					else if (laserFields[i].orientation == "vertical"){
-						laserVertical.paintIcon(this, g, 123 + laserCol * 50, 67 + laserRow * 50);
-					}
-					else if (laserFields[i].orientation == "diagonalNW"){
-						laserDiagonalNW.paintIcon(this, g, 123 + laserCol * 50, 67 + laserRow * 50);
-					}
-					else if (laserFields[i].orientation == "diagonalNE"){
-						laserDiagonalNE.paintIcon(this, g, 123 + laserCol * 50, 67 + laserRow * 50);
-					}
-					
+
 				}
 			}
 		}
