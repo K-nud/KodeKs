@@ -401,53 +401,6 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 				}
 			}
 			
-			/*
-			 * Firstandahalf, put lasers onto the board where indicated by KodeKsData.laserFields 
-			 */
-			LaserField[] laserFields = getLaserFields();
-			
-			ImageIcon laserHorizontal;
-			ImageIcon laserVertical;
-			ImageIcon laserDiagonalNW; 
-			ImageIcon laserDiagonalNE;
-			
-			int laserCol;
-			int laserRow;
-
-			if (laserFields != null) {
-				if (currentPlayer == BLUE){
-					 laserHorizontal = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_blue_hor.gif"));
-					 laserVertical = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_blue_vert.gif"));
-					 laserDiagonalNW = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_blue_diag1.gif"));
-					 laserDiagonalNE = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_blue_diag2.gif"));
-				}
-				else {
-					 laserHorizontal = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_red_hor.gif"));
-					 laserVertical = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_red_vert.gif"));
-					 laserDiagonalNW = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_red_diag1.gif"));
-					 laserDiagonalNE = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_red_diag2.gif"));					
-				}
-				
-				for (int i = 0; i < laserFields.length; i++){
-					
-					laserCol = laserFields[i].column;
-					laserRow = laserFields[i].row;
-					
-					if (laserFields[i].orientation == "horizontal"){
-						laserHorizontal.paintIcon(this, g, 128 + laserCol * 50, 72 + laserRow * 50);
-					}
-					else if (laserFields[i].orientation == "vertical"){
-						laserVertical.paintIcon(this, g, 128 + laserCol * 50, 72 + laserRow * 50);
-					}
-					else if (laserFields[i].orientation == "diagonalNW"){
-						laserDiagonalNW.paintIcon(this, g, 128 + laserCol * 50, 72 + laserRow * 50);
-					}
-					else if (laserFields[i].orientation == "diagonalNE"){
-						laserDiagonalNE.paintIcon(this, g, 128 + laserCol * 50, 72 + laserRow * 50);
-					}
-					
-				}
-			}
 			
 			/*
 			 * Second, draw a 2-pixel cyan border around the pieces that can be
@@ -510,6 +463,54 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 								.getResource("4.png"));
 						four.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
 					}
+				}
+			}
+			
+			/*
+			 * lastly, put lasers onto the board where indicated by KodeKsData.laserFields 
+			 */
+			LaserField[] laserFields = getLaserFields();
+			
+			ImageIcon laserHorizontal;
+			ImageIcon laserVertical;
+			ImageIcon laserDiagonalNW; 
+			ImageIcon laserDiagonalNE;
+			
+			int laserCol;
+			int laserRow;
+
+			if (laserFields != null) {
+				if (currentPlayer == BLUE){
+					 laserHorizontal = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_blue_hor.gif"));
+					 laserVertical = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_blue_vert.gif"));
+					 laserDiagonalNW = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_blue_diag1.gif"));
+					 laserDiagonalNE = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_blue_diag2.gif"));
+				}
+				else {
+					 laserHorizontal = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_red_hor.gif"));
+					 laserVertical = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_red_vert.gif"));
+					 laserDiagonalNW = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_red_diag1.gif"));
+					 laserDiagonalNE = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_red_diag2.gif"));					
+				}
+				
+				for (int i = 0; i < laserFields.length; i++){
+					
+					laserCol = laserFields[i].column;
+					laserRow = laserFields[i].row;
+					
+					if (laserFields[i].orientation == "horizontal"){
+						laserHorizontal.paintIcon(this, g, 128 + laserCol * 50, 72 + laserRow * 50);
+					}
+					else if (laserFields[i].orientation == "vertical"){
+						laserVertical.paintIcon(this, g, 128 + laserCol * 50, 72 + laserRow * 50);
+					}
+					else if (laserFields[i].orientation == "diagonalNW"){
+						laserDiagonalNW.paintIcon(this, g, 128 + laserCol * 50, 72 + laserRow * 50);
+					}
+					else if (laserFields[i].orientation == "diagonalNE"){
+						laserDiagonalNE.paintIcon(this, g, 128 + laserCol * 50, 72 + laserRow * 50);
+					}
+					
 				}
 			}
 		}
