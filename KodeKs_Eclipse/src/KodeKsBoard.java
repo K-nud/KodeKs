@@ -382,41 +382,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 			}
 		}
 
-		/*
-		 * (Draw the fieldvalues on the board) Load the images of the
-		 * fieldvalues and set them up like given in KodeKsData
-		 */
-		for (int row = 0; row < 10; row++) {
-			for (int col = 0; col < 10; col++) {
-				/*
-				 * g.setColor(Color.BLACK); Font value=new Font("Gothic",
-				 * Font.BOLD, 24); g.setFont(value);
-				 * g.drawString(String.valueOf(fieldvalue[row][col]), 145 +
-				 * col*50, 105 + row*50);
-				 */
-				if (fieldvalue[row][col] == 1) {
-					ImageIcon one = new ImageIcon(getClass().getClassLoader()
-							.getResource("1.png"));
-					one.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
-				}
-				if (fieldvalue[row][col] == 2) {
-					ImageIcon two = new ImageIcon(getClass().getClassLoader()
-							.getResource("2.png"));
-					two.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
-				}
-				if (fieldvalue[row][col] == 3) {
-					ImageIcon three = new ImageIcon(getClass().getClassLoader()
-							.getResource("3.png"));
-					three.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
-				}
-				if (fieldvalue[row][col] == 4) {
-					ImageIcon four = new ImageIcon(getClass().getClassLoader()
-							.getResource("4.png"));
-					four.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
-				}
-			}
-		}
-
+		
 		/*
 		 * If a game is in progress, highlight the legal moves and the possible
 		 * Pieces to take. Note that legalMoves is never null while a game is in
@@ -468,16 +434,16 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 					laserRow = laserFields[i].row;
 					
 					if (laserFields[i].orientation == "horizontal"){
-						laserHorizontal.paintIcon(this, g, 80 + laserCol * 50, 24 + laserRow * 50);
+						laserHorizontal.paintIcon(this, g, 128 + laserCol * 50, 72 + laserRow * 50);
 					}
 					else if (laserFields[i].orientation == "vertical"){
-						laserVertical.paintIcon(this, g, 80 + laserCol * 50, 24 + laserRow * 50);
+						laserVertical.paintIcon(this, g, 128 + laserCol * 50, 72 + laserRow * 50);
 					}
 					else if (laserFields[i].orientation == "diagonalNW"){
-						laserDiagonalNW.paintIcon(this, g, 80 + laserCol * 50, 24 + laserRow * 50);
+						laserDiagonalNW.paintIcon(this, g, 128 + laserCol * 50, 72 + laserRow * 50);
 					}
 					else if (laserFields[i].orientation == "diagonalNE"){
-						laserDiagonalNE.paintIcon(this, g, 80 + laserCol * 50, 24 + laserRow * 50);
+						laserDiagonalNE.paintIcon(this, g, 128 + laserCol * 50, 72 + laserRow * 50);
 					}
 					
 				}
@@ -508,6 +474,41 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 							&& legalMoves[i].fromRow == selectedRow) {
 						g.drawRect(130 + legalMoves[i].toCol * 50,
 								74 + legalMoves[i].toRow * 50, 45, 45);
+					}
+				}
+			}
+			
+			/*
+			 * (Draw the fieldvalues on the board) Load the images of the
+			 * fieldvalues and set them up like given in KodeKsData
+			 */
+			for (int row = 0; row < 10; row++) {
+				for (int col = 0; col < 10; col++) {
+					/*
+					 * g.setColor(Color.BLACK); Font value=new Font("Gothic",
+					 * Font.BOLD, 24); g.setFont(value);
+					 * g.drawString(String.valueOf(fieldvalue[row][col]), 145 +
+					 * col*50, 105 + row*50);
+					 */
+					if (fieldvalue[row][col] == 1) {
+						ImageIcon one = new ImageIcon(getClass().getClassLoader()
+								.getResource("1.png"));
+						one.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
+					}
+					if (fieldvalue[row][col] == 2) {
+						ImageIcon two = new ImageIcon(getClass().getClassLoader()
+								.getResource("2.png"));
+						two.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
+					}
+					if (fieldvalue[row][col] == 3) {
+						ImageIcon three = new ImageIcon(getClass().getClassLoader()
+								.getResource("3.png"));
+						three.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
+					}
+					if (fieldvalue[row][col] == 4) {
+						ImageIcon four = new ImageIcon(getClass().getClassLoader()
+								.getResource("4.png"));
+						four.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
 					}
 				}
 			}
