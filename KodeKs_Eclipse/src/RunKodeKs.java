@@ -8,29 +8,29 @@ import javax.swing.UnsupportedLookAndFeelException;
 /**
  * 
  * @author K. Vogel & B. Suhr
- *
+ * 
  */
 public class RunKodeKs implements Serializable {
-/**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-static GUI mainGUI;
+	static GUI mainGUI;
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
-					mainGUI=new GUI(new KodeKsData());
+
+					mainGUI = new GUI(new KodeKsData());
 					try {
 						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-					} catch (ClassNotFoundException | InstantiationException
-							| IllegalAccessException | UnsupportedLookAndFeelException e1) {
+					} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e1) {
 						e1.printStackTrace();
 					}
 					SwingUtilities.updateComponentTreeUI(mainGUI);
 					mainGUI.setVisible(true);
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

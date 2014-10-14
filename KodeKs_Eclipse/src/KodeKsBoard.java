@@ -19,8 +19,7 @@ import javax.swing.border.MatteBorder;
  * @author K. Vogel & B. Suhr
  * 
  */
-public class KodeKsBoard extends KodeKsData implements ActionListener,
-		MouseListener {
+public class KodeKsBoard extends KodeKsData implements ActionListener, MouseListener {
 
 	private static final long serialVersionUID = 12341234L;
 
@@ -36,36 +35,30 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 											// two players
 	protected static JLabel Player2Name;
 
-	static int NumberOfRedStones = 0; // these inegers represents the left
-										// stones of each player
-	static int NumberOfBlueStones = 0;
-	protected static JPanel board; // This panel contains the board, the
-									// statuspanel and the "stonepanels"
+	static int NumberOfRedStones = 0; // amount of stones remaining for red player
+	static int NumberOfBlueStones = 0; // amount of stones remaining for blue player
+	protected static JPanel board; // panel to hold board, status panel and panel for removed stones
 
 	boolean gameInProgress; // Is a game currently in progress?
 
-	/* The next five variables are valid only when the game is in progress. */
+	/* The next five variables are valid only when a game is in progress. */
 
-	public static int currentPlayer; // Whose turn is it now? The possible
-										// values are 1(red player) and 2(blue
-										// player)
+	public static int currentPlayer;// Whose turn is it now?
+									// 1 for red player, 2 for blue player
 
-	int selectedRow, selectedCol; // If the current player has selected a piece
-									// to
-	// move, these give the row and column
-	// containing that piece. If no piece is
-	// yet selected, then selectedRow is -1.
+	// if the current player clicks on a stone to move it
+	// these variables will hold the coordinates of that stone
+	// otherwise, they are set as -1
+	int selectedRow, selectedCol;
+	// array containing the threatened stones for the current turn
+	// updated by getThreatenStone
+	static ThreatenStone[] getThreatenStones;
 
-	static ThreatenStone[] getThreatenStones; // An array containing the
-												// threaten
-	// stones by the current player.
-
-	KodeKsMove[] legalMoves; // An array containing the legal moves for the
-								// current player.
+	// contains allowed moves for the current turn
+	KodeKsMove[] legalMoves;
 
 	/**
-	 * Constructor. Create the labels, the board and starts a new game. Listens
-	 * for mouse. clicks
+	 * Constructor. Create the labels, the board and starts a new game. Listens for mouse clicks.
 	 * 
 	 * @param parent
 	 *            - Gui
@@ -94,10 +87,8 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 		 */
 		Player1_Stones = new JPanel();
 		Player1_Stones.setPreferredSize(new Dimension(65, 625));
-		Player1_Stones
-				.setLayout(new BoxLayout(Player1_Stones, BoxLayout.Y_AXIS));
-		Player1_Stones.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(
-				0, 0, 0)));
+		Player1_Stones.setLayout(new BoxLayout(Player1_Stones, BoxLayout.Y_AXIS));
+		Player1_Stones.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		add(Player1_Stones, BorderLayout.WEST);
 
 		Player1Name = new JLabel("Player 1");
@@ -106,10 +97,8 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 
 		Player2_Stones = new JPanel();
 		Player2_Stones.setPreferredSize(new Dimension(65, 625));
-		Player2_Stones
-				.setLayout(new BoxLayout(Player2_Stones, BoxLayout.Y_AXIS));
-		Player2_Stones.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(
-				0, 0, 0)));
+		Player2_Stones.setLayout(new BoxLayout(Player2_Stones, BoxLayout.Y_AXIS));
+		Player2_Stones.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		add(Player2_Stones, BorderLayout.EAST);
 
 		Player2Name = new JLabel("Player 2");
@@ -170,9 +159,8 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 	}
 
 	/**
-	 * The game ends. The parameter, str, is displayed as a message to the user.
-	 * The states of the buttons are adjusted so players can start a new game.
-	 * This method is called when the game ends at any point in this class.
+	 * The game ends. The parameter 'str' is displayed as a message to the user. The states of the buttons are adjusted so players can start a new game. This
+	 * method is called when the game ends at any point in this class.
 	 * 
 	 * @param str
 	 *            - String
@@ -183,12 +171,9 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 	}
 
 	/**
-	 * This is called by mousePressed() when a player clicks on the square in
-	 * the specified row and col. It has already been checked that a game is, in
-	 * fact, in progress. If the player clicked on one of the pieces that the
-	 * player can move, mark this row and col as selected and return. (This
-	 * might change a previous selection.) Reset the message, in case it was
-	 * previously displaying an error message.
+	 * This is called by mousePressed() when a player clicks on the square in the specified row and col. It has already been checked that a game is, in fact, in
+	 * progress. If the player clicked on one of the pieces that the player can move, mark this row and col as selected and return. (This might change a
+	 * previous selection.) Reset the message if it was previously displaying an error message.
 	 * 
 	 * @param row
 	 *            - int
@@ -210,8 +195,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 			}
 
 		/*
-		 * If no piece has been selected to be moved, the user must first select
-		 * a piece. Show an error message and return.
+		 * If no piece has been selected to be moved, the user must first select a piece. Show an error message and return.
 		 */
 
 		if (selectedRow < 0) {
@@ -220,22 +204,18 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 		}
 
 		/*
-		 * If the user clicked on a square where the selected piece can be
-		 * legally moved, then make the move and return.
+		 * If the user clicked on a square where the selected piece can be legally moved, then make the move and return.
 		 */
 
 		for (int i = 0; i < legalMoves.length; i++)
-			if (legalMoves[i].fromRow == selectedRow
-					&& legalMoves[i].fromCol == selectedCol
-					&& legalMoves[i].toRow == row && legalMoves[i].toCol == col) {
+			if (legalMoves[i].fromRow == selectedRow && legalMoves[i].fromCol == selectedCol && legalMoves[i].toRow == row && legalMoves[i].toCol == col) {
 				doMakeMove(legalMoves[i]);
 				return;
 			}
 
 		/*
-		 * If we get to this point, there is a piece selected, and the square
-		 * where the user just clicked is not one where that piece can be
-		 * legally moved. Show an error message.
+		 * If we get to this point, there is a piece selected but the square where the user just clicked is not one where that piece can be legally moved. Show
+		 * an error message.
 		 */
 
 		message.setText("Click the square you want to move to.");
@@ -243,7 +223,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 	} // end doClickSquare()
 
 	/**
-	 * This is called when the current player can take an opponents Piece.
+	 * This is called when the current player can take an opponents piece.
 	 * 
 	 * @param take
 	 *            - ThreatenStone
@@ -259,8 +239,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 	} // end doTakeStone();
 
 	/**
-	 * This is called when the current player has chosen the specified move.
-	 * Make the move, and then either end or continue the game appropriately.
+	 * This is called when the current player has chosen the specified move. Make the move, and then either end or continue the game accordingly.
 	 * 
 	 * @param move
 	 *            - KodeKsMove
@@ -270,10 +249,8 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 		boardState.makeMove(move);
 
 		/*
-		 * The current player's turn is ended, so change to the other player.
-		 * Get that player's ThreatenStones, legal moves and the
-		 * FoolStoneCombinations of the opponent. If the player has less the 5
-		 * stones, then the game ends.
+		 * The current player's turn is ended, so change to the other player. Get that player's ThreatenStones, legal moves and the FoolStoneCombinations of the
+		 * opponent. If the player has less the 5 stones, then the game ends.
 		 */
 		Location start = new Location(move.fromRow, move.fromCol);
 		Location end = new Location(move.toRow, move.toCol);
@@ -301,8 +278,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 		}
 
 		/*
-		 * Set selectedRow = -1 to record that the player has not yet selected a
-		 * piece to move.
+		 * Set selectedRow = -1 to record that the player has not yet selected a piece to move.
 		 */
 
 		selectedRow = -1;
@@ -313,10 +289,8 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 	} // end doMakeMove();
 
 	/**
-	 * (Draw a KodeKsboard pattern in gray and lightGray. Draw the pieces.) Load
-	 * the images of the board and the pieces. Draw the names of rows and
-	 * columns If a game is in progress, hilite the legal moves and the pieces
-	 * to take
+	 * (Draw a KodeKsboard pattern in gray and lightGray. Draw the pieces.) Load the images of the board and the pieces. Draw the names of rows and columns If a
+	 * game is in progress, highlight the legal moves and the threatened pieces. For all threatened pieces, show lasers originating from the threatening combo.
 	 * 
 	 * @param g
 	 *            - Graphics
@@ -332,8 +306,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 		// g.fillRect(120, 60, 520, 520);
 
 		// load the image of the board
-		ImageIcon board_game = new ImageIcon(getClass().getClassLoader()
-				.getResource("game_board.png"));
+		ImageIcon board_game = new ImageIcon(getClass().getClassLoader().getResource("game_board.png"));
 		board_game.paintIcon(this, g, 63, 2);
 
 		/* Draw the names of each row and col */
@@ -345,8 +318,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 			g.drawString(String.valueOf(charOfCols[col]), 145 + col * 50, 57);
 		}
 
-		String[] charOfRows = { "a", "b", "c", "d", "e", "f", "g", "h", "i",
-				"j" };
+		String[] charOfRows = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j" };
 		for (int row = 0; row < 10; row++) {
 			g.setColor(new Color(42, 0, 0));
 			Font coordinates = new Font("Gothic", Font.BOLD, 28);
@@ -359,8 +331,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 			for (int col = 0; col < 10; col++) {
 
 				/*
-				 * if( row % 2 == col % 2 ) g.setColor(Color.LIGHT_GRAY); else
-				 * g.setColor(Color.GRAY);
+				 * if( row % 2 == col % 2 ) g.setColor(Color.LIGHT_GRAY); else g.setColor(Color.GRAY);
 				 * 
 				 * g.fillRect(130 + col*50, 70 + row*50, 50, 50);
 				 */
@@ -368,15 +339,13 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 				/* Draw the Pieces on the board */
 				switch (boardState.pieceAt(row, col)) {
 				case RED:
-					ImageIcon red = new ImageIcon(getClass().getClassLoader()
-							.getResource("redStone.png"));
+					ImageIcon red = new ImageIcon(getClass().getClassLoader().getResource("redStone.png"));
 					red.paintIcon(this, g, 133 + col * 50, 77 + row * 50);
 					// g.setColor(Color.RED);
 					// g.fillOval(132 + col*50, 76 + row*50, 40, 40);
 					break;
 				case BLUE:
-					ImageIcon blue = new ImageIcon(getClass().getClassLoader()
-							.getResource("blueStone.png"));
+					ImageIcon blue = new ImageIcon(getClass().getClassLoader().getResource("blueStone.png"));
 					blue.paintIcon(this, g, 133 + col * 50, 77 + row * 50);
 					// g.setColor(Color.BLUE);
 					// g.fillOval(132 + col*50, 76 + row*50, 40, 40);
@@ -386,90 +355,72 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 		}
 
 		/*
-		 * If a game is in progress, highlight the legal moves and the possible
-		 * Pieces to take. Note that legalMoves is never null while a game is in
-		 * progress.
+		 * If a game is in progress, highlight the legal moves and the possible Pieces to take. Note that legalMoves is never null while a game is in progress.
 		 */
 		if (gameInProgress) {
 			/*
-			 * First, draw a 2-pixel red border around the pieces that can be
-			 * taken.
+			 * First, draw a 2-pixel red border around the pieces that can be taken.
 			 */
 			if (getThreatenStones != null) {
 				g.setColor(Color.red);
 				for (int i = 0; i < getThreatenStones.length; i++) {
-					g.drawRect(130 + getThreatenStones[i].threatenCol * 50,
-							74 + getThreatenStones[i].threatenRow * 50, 45, 45);
+					g.drawRect(130 + getThreatenStones[i].threatenCol * 50, 74 + getThreatenStones[i].threatenRow * 50, 45, 45);
 				}
 			}
 
 			/*
-			 * Second, draw a 2-pixel cyan border around the pieces that can be
-			 * moved.
+			 * Second, draw a 2-pixel cyan border around the pieces that can be moved.
 			 */
 			g.setColor(Color.cyan);
 			for (int i = 0; i < legalMoves.length; i++) {
-				g.drawRect(130 + legalMoves[i].fromCol * 50,
-						74 + legalMoves[i].fromRow * 50, 45, 45);
+				g.drawRect(130 + legalMoves[i].fromCol * 50, 74 + legalMoves[i].fromRow * 50, 45, 45);
 			}
 			/*
-			 * If a piece is selected for moving (i.e. if selectedRow >= 0),
-			 * then draw a 2-pixel white border around that piece and draw green
-			 * borders around each square that that piece can be moved to.
+			 * If a piece is selected for moving (i.e. if selectedRow >= 0), then draw a 2-pixel white border around that piece and draw green borders around
+			 * each square that that piece can be moved to.
 			 */
 			if (selectedRow >= 0) {
 				g.setColor(Color.white);
-				g.drawRect(130 + selectedCol * 50, 74 + selectedRow * 50, 45,
-						45);
+				g.drawRect(130 + selectedCol * 50, 74 + selectedRow * 50, 45, 45);
 
 				g.setColor(Color.green);
 				for (int i = 0; i < legalMoves.length; i++) {
-					if (legalMoves[i].fromCol == selectedCol
-							&& legalMoves[i].fromRow == selectedRow) {
-						g.drawRect(130 + legalMoves[i].toCol * 50,
-								74 + legalMoves[i].toRow * 50, 45, 45);
+					if (legalMoves[i].fromCol == selectedCol && legalMoves[i].fromRow == selectedRow) {
+						g.drawRect(130 + legalMoves[i].toCol * 50, 74 + legalMoves[i].toRow * 50, 45, 45);
 					}
 				}
 			}
 
 			/*
-			 * (Draw the fieldvalues on the board) Load the images of the
-			 * fieldvalues and set them up like given in KodeKsData
+			 * (Draw the fieldvalues on the board) Load the images of the fieldvalues and set them up like given in KodeKsData
 			 */
 			for (int row = 0; row < 10; row++) {
 				for (int col = 0; col < 10; col++) {
 					/*
-					 * g.setColor(Color.BLACK); Font value=new Font("Gothic",
-					 * Font.BOLD, 24); g.setFont(value);
-					 * g.drawString(String.valueOf(fieldvalue[row][col]), 145 +
-					 * col*50, 105 + row*50);
+					 * g.setColor(Color.BLACK); Font value=new Font("Gothic", Font.BOLD, 24); g.setFont(value);
+					 * g.drawString(String.valueOf(fieldvalue[row][col]), 145 + col*50, 105 + row*50);
 					 */
 					if (fieldvalue[row][col] == 1) {
-						ImageIcon one = new ImageIcon(getClass()
-								.getClassLoader().getResource("1.png"));
+						ImageIcon one = new ImageIcon(getClass().getClassLoader().getResource("1.png"));
 						one.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
 					}
 					if (fieldvalue[row][col] == 2) {
-						ImageIcon two = new ImageIcon(getClass()
-								.getClassLoader().getResource("2.png"));
+						ImageIcon two = new ImageIcon(getClass().getClassLoader().getResource("2.png"));
 						two.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
 					}
 					if (fieldvalue[row][col] == 3) {
-						ImageIcon three = new ImageIcon(getClass()
-								.getClassLoader().getResource("3.png"));
+						ImageIcon three = new ImageIcon(getClass().getClassLoader().getResource("3.png"));
 						three.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
 					}
 					if (fieldvalue[row][col] == 4) {
-						ImageIcon four = new ImageIcon(getClass()
-								.getClassLoader().getResource("4.png"));
+						ImageIcon four = new ImageIcon(getClass().getClassLoader().getResource("4.png"));
 						four.paintIcon(this, g, 132 + col * 50, 76 + row * 50);
 					}
 				}
 			}
 
 			/*
-			 * lastly, put lasers onto the board where indicated by
-			 * KodeKsData.laserFields
+			 * lastly, put lasers onto the board where indicated by KodeKsData.laserFields
 			 */
 			LaserField[] laserFields = getLaserFields();
 
@@ -481,44 +432,42 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 			int laserCol;
 			int laserRow;
 
+			// as long as there are lasers to draw
 			if (laserFields != null) {
+				// get blue images if current player is blue
 				if (currentPlayer == BLUE) {
-					laserHorizontal = new ImageIcon(getClass().getClassLoader()
-							.getResource("Laser_Animated_blue_hor.gif"));
-					laserVertical = new ImageIcon(getClass().getClassLoader()
-							.getResource("Laser_Animated_blue_vert.gif"));
-					laserDiagonalNW = new ImageIcon(getClass().getClassLoader()
-							.getResource("Laser_Animated_blue_diag1.gif"));
-					laserDiagonalNE = new ImageIcon(getClass().getClassLoader()
-							.getResource("Laser_Animated_blue_diag2.gif"));
+					laserHorizontal = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_blue_hor.gif"));
+					laserVertical = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_blue_vert.gif"));
+					laserDiagonalNW = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_blue_diag1.gif"));
+					laserDiagonalNE = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_blue_diag2.gif"));
+					// if the player is not blue, it's red's turn - load red images
 				} else {
-					laserHorizontal = new ImageIcon(getClass().getClassLoader()
-							.getResource("Laser_Animated_red_hor.gif"));
-					laserVertical = new ImageIcon(getClass().getClassLoader()
-							.getResource("Laser_Animated_red_vert.gif"));
-					laserDiagonalNW = new ImageIcon(getClass().getClassLoader()
-							.getResource("Laser_Animated_red_diag1.gif"));
-					laserDiagonalNE = new ImageIcon(getClass().getClassLoader()
-							.getResource("Laser_Animated_red_diag2.gif"));
+					laserHorizontal = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_red_hor.gif"));
+					laserVertical = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_red_vert.gif"));
+					laserDiagonalNW = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_red_diag1.gif"));
+					laserDiagonalNE = new ImageIcon(getClass().getClassLoader().getResource("Laser_Animated_red_diag2.gif"));
 				}
 
+				// for every laserField in the array
 				for (int i = 0; i < laserFields.length; i++) {
 
+					// pull out the coordinates for easier use
 					laserCol = laserFields[i].column;
 					laserRow = laserFields[i].row;
 
+					// if the laser currently worked on is horizontal
 					if (laserFields[i].orientation == "horizontal") {
-						laserHorizontal.paintIcon(this, g, 123 + laserCol * 50,
-								67 + laserRow * 50);
+						// then draw the horizontal laser
+						laserHorizontal.paintIcon(this, g, 123 + laserCol * 50, 67 + laserRow * 50);
+						// same but for vertical
 					} else if (laserFields[i].orientation == "vertical") {
-						laserVertical.paintIcon(this, g, 123 + laserCol * 50,
-								67 + laserRow * 50);
+						laserVertical.paintIcon(this, g, 123 + laserCol * 50, 67 + laserRow * 50);
+						// same but for first diagonal
 					} else if (laserFields[i].orientation == "diagonalNW") {
-						laserDiagonalNW.paintIcon(this, g, 123 + laserCol * 50,
-								67 + laserRow * 50);
+						laserDiagonalNW.paintIcon(this, g, 123 + laserCol * 50, 67 + laserRow * 50);
+						// same but for second diagonal
 					} else if (laserFields[i].orientation == "diagonalNE") {
-						laserDiagonalNE.paintIcon(this, g, 123 + laserCol * 50,
-								67 + laserRow * 50);
+						laserDiagonalNE.paintIcon(this, g, 123 + laserCol * 50, 67 + laserRow * 50);
 					}
 
 				}
@@ -527,9 +476,8 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 	} // end paintComponent()
 
 	/**
-	 * Respond to a user click on the board. If no game is in progress, show an
-	 * error message. Otherwise, find the row and column that the user clicked
-	 * and call doClickSquare() to handle it.
+	 * Respond to a user click on the board. If no game is in progress, show an error message. Otherwise, find the row and column that the user clicked and call
+	 * doClickSquare() to handle it.
 	 * 
 	 * @param evt
 	 *            - MouseEvent
@@ -543,8 +491,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 			if (col >= 0 && col < 10 && row >= 0 && row < 10) {
 				if (getThreatenStones != null) {
 					for (int i = 0; i < getThreatenStones.length; i++) {
-						if (getThreatenStones[i].threatenRow == row
-								&& getThreatenStones[i].threatenCol == col)
+						if (getThreatenStones[i].threatenRow == row && getThreatenStones[i].threatenCol == col)
 							doTakeStone(getThreatenStones[i]);
 					}
 					legalMoves = boardState.getLegalMoves(currentPlayer);

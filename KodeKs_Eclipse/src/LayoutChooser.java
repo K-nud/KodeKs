@@ -15,129 +15,121 @@ import javax.swing.UnsupportedLookAndFeelException;
  * Gives the players the possibility to change the layout of the GUI
  * 
  * @author K. Vogel & B. Suhr
- *
+ * 
  */
-public class LayoutChooser extends AbstractAction implements ActionListener, Action{
-	
+public class LayoutChooser extends AbstractAction implements ActionListener, Action {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	/**
 	 * 
 	 * @param mother
-	 * 				- JMenu
+	 *            - JMenu
 	 */
-	public LayoutChooser(JMenu mother){
-		
+	public LayoutChooser(JMenu mother) {
+
 		JMenu frameLayout = new JMenu("Layout");
-		
+
 		JRadioButtonMenuItem frameLayout_System = new JRadioButtonMenuItem("system");
 		frameLayout_System.setActionCommand("system");
 		frameLayout_System.setSelected(true);
-		
+
 		JRadioButtonMenuItem frameLayout_Motif = new JRadioButtonMenuItem("motif");
 		frameLayout_Motif.setActionCommand("motif");
-		
+
 		JRadioButtonMenuItem frameLayout_Metal = new JRadioButtonMenuItem("metal");
 		frameLayout_Metal.setActionCommand("metal");
-		
+
 		JRadioButtonMenuItem frameLayout_Nimbus = new JRadioButtonMenuItem("nimbus");
 		frameLayout_Nimbus.setActionCommand("nimbus");
-		
-		
-	    //Group the radio buttons.
-	    ButtonGroup chooseLayout = new ButtonGroup();
-	    chooseLayout.add(frameLayout_System);
-	    chooseLayout.add(frameLayout_Motif);
-	    chooseLayout.add(frameLayout_Metal);
-	    chooseLayout.add(frameLayout_Nimbus);	  
-	    
-	    //Register a listener for the radio buttons.
-	    frameLayout_System.addActionListener(this);
-	    frameLayout_Motif.addActionListener(this);
-	    frameLayout_Metal.addActionListener(this);
-	    frameLayout_Nimbus.addActionListener(this);
-	    
-	    // Add to MenuItem
-	    frameLayout.add(frameLayout_System);
-	    frameLayout.add(frameLayout_Motif);
-	    frameLayout.add(frameLayout_Metal);
-	    frameLayout.add(frameLayout_Nimbus);
-	    
-	    mother.add(frameLayout);
+
+		// Group the radio buttons.
+		ButtonGroup chooseLayout = new ButtonGroup();
+		chooseLayout.add(frameLayout_System);
+		chooseLayout.add(frameLayout_Motif);
+		chooseLayout.add(frameLayout_Metal);
+		chooseLayout.add(frameLayout_Nimbus);
+
+		// Register a listener for the radio buttons.
+		frameLayout_System.addActionListener(this);
+		frameLayout_Motif.addActionListener(this);
+		frameLayout_Metal.addActionListener(this);
+		frameLayout_Nimbus.addActionListener(this);
+
+		// Add to MenuItem
+		frameLayout.add(frameLayout_System);
+		frameLayout.add(frameLayout_Motif);
+		frameLayout.add(frameLayout_Metal);
+		frameLayout.add(frameLayout_Nimbus);
+
+		mother.add(frameLayout);
 	}
-	
+
 	/**
 	 * 
 	 */
 	public void actionPerformed(ActionEvent e) {
-		
-		if (e.getActionCommand()=="system")
+
+		if (e.getActionCommand() == "system")
 			try {
-				 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			}catch (ClassNotFoundException | InstantiationException
-					| IllegalAccessException | UnsupportedLookAndFeelException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} 
-		if (e.getActionCommand()=="metal")
-			try {
-				UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-			} catch (ClassNotFoundException | InstantiationException
-					| IllegalAccessException | UnsupportedLookAndFeelException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} 
-		if (e.getActionCommand()=="motif")
-			try {
-				UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
-			} catch (ClassNotFoundException | InstantiationException
-					| IllegalAccessException | UnsupportedLookAndFeelException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} 
-		if (e.getActionCommand()=="nimbus")
-			try {
-				UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-			} catch (ClassNotFoundException | InstantiationException
-					| IllegalAccessException | UnsupportedLookAndFeelException e1) {
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		
-		  SwingUtilities.updateComponentTreeUI(RunKodeKs.mainGUI);
-		  
+		if (e.getActionCommand() == "metal")
+			try {
+				UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		if (e.getActionCommand() == "motif")
+			try {
+				UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		if (e.getActionCommand() == "nimbus")
+			try {
+				UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+		SwingUtilities.updateComponentTreeUI(RunKodeKs.mainGUI);
+
 	}
+
 	@Override
 	public void addPropertyChangeListener(PropertyChangeListener arg0) {
 	}
-	
+
 	@Override
 	public Object getValue(String arg0) {
 		return null;
 	}
-	
+
 	@Override
 	public boolean isEnabled() {
 		return false;
 	}
-	
+
 	@Override
 	public void putValue(String arg0, Object arg1) {
 	}
-	
+
 	@Override
 	public void removePropertyChangeListener(PropertyChangeListener arg0) {
 	}
-	
+
 	@Override
 	public void setEnabled(boolean arg0) {
 	}
-	
-	
-	
-	
+
 }

@@ -4,56 +4,55 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-
 /**
- * Popup shows the name of the winner and gives the possibility to start a new game	
+ * Popup shows the name of the winner and allows to start a new game
+ * 
  * @author K. Vogel & B. Suhr
- *
+ * 
  */
-public class GameOverPopup extends PopupWindow
-{
+public class GameOverPopup extends PopupWindow {
 	private static final long serialVersionUID = 1400666790706351389L;
-	private JLabel text; //shows a message who won the game
-	private JButton newGame, exit; //Buttons to start a new game or quit
-	
+	private JLabel text; // shows a message who won the game
+	private JButton newGame, exit; // Buttons to start a new game or quit
+
 	/**
-	 * Constructer of a "game over" popup. When this popup is visible the players can decide 
-	 * if they want to start a new game of KodeKs or if they want to quit.
+	 * Constructer of a "game over" popup. When this popup is visible the players can decide if they want to start a new game of KodeKs or if they want to quit.
 	 * 
-	 * @param parent 
-	 * 				- GUI
-	 * @param title 
-	 * 				- String
+	 * @param parent
+	 *            - GUI
+	 * @param title
+	 *            - String
 	 */
-	public GameOverPopup(GUI parent, String title)
-	{
+	public GameOverPopup(GUI parent, String title) {
 		super(parent, title);
-		
-		text = new JLabel(""+title+"!");
+
+		text = new JLabel("" + title + "!");
 		newGame = new JButton("New Game");
 		exit = new JButton("Exit");
-		newGame.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-	       		 new NewGameDialog();
-	       		 dispose();}
+		newGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new NewGameDialog();
+				dispose();
+			}
 		});
-		exit.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				RunKodeKs.mainGUI.quitDlg();	       	}
+		exit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RunKodeKs.mainGUI.quitDlg();
+			}
 		});
 		newGame.addActionListener(parent);
 		exit.addActionListener(parent);
-		
+
 		JPanel top = new JPanel();
-		top.setBackground(new Color(0,0,0,0));
+		top.setBackground(new Color(0, 0, 0, 0));
 		top.add(text);
 		JPanel bottom = new JPanel();
-		bottom.setBackground(new Color(0,0,0,0));
+		bottom.setBackground(new Color(0, 0, 0, 0));
 		bottom.add(newGame);
 		bottom.add(exit);
 		add(top);
 		add(bottom);
-		
+
 		pack();
 		resetLocation();
 	}
