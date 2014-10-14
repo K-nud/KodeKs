@@ -304,6 +304,12 @@ public class KodeKsData extends JPanel implements Serializable {
 							}
 						}
 					}
+					
+					// reset laser range for every new direction
+					range = 0;
+					// reset final laser position for every new direction
+					laserEndpointFound = false;
+
 					// same as above but for horizontal to the right
 					if (col + 1 < 10 && pieceAt(row, col + 1) == player) {
 						range = ((fieldvalue[row][col]) + (fieldvalue[row][col + 1]));
@@ -323,6 +329,12 @@ public class KodeKsData extends JPanel implements Serializable {
 							}
 						}
 					}
+					
+					// reset laser range for every new direction
+					range = 0;
+					// reset final laser position for every new direction
+					laserEndpointFound = false;
+					
 					// same as above but for diagonal from top left to bottom right
 					if (row + 1 < 10 && col + 1 < 10 && pieceAt(row + 1, col + 1) == player) {
 						range = ((fieldvalue[row][col]) + (fieldvalue[row + 1][col + 1]));
@@ -341,6 +353,12 @@ public class KodeKsData extends JPanel implements Serializable {
 							}
 						}
 					}
+					
+					// reset laser range for every new direction
+					range = 0;
+					// reset final laser position for every new direction
+					laserEndpointFound = false;
+					
 					// same as above but for NE diagonal
 					if (row + 1 < 10 && col - 1 >= 0 && pieceAt(row + 1, col - 1) == player) {
 						range = ((fieldvalue[row][col]) + (fieldvalue[row + 1][col - 1]));
@@ -358,6 +376,12 @@ public class KodeKsData extends JPanel implements Serializable {
 							}
 						}
 					}
+					
+					// reset laser range for every new direction
+					range = 0;
+					// reset final laser position for every new direction
+					laserEndpointFound = false;
+					
 					// NE diagonal in the other direction
 					if (row - 1 >= 0 && col + 1 < 10 && pieceAt((row - 1), (col + 1)) == player) {
 						range = ((fieldvalue[row][col]) + (fieldvalue[row - 1][col + 1]));
@@ -376,6 +400,12 @@ public class KodeKsData extends JPanel implements Serializable {
 							}
 						}
 					}
+					
+					// reset laser range for every new direction
+					range = 0;
+					// reset final laser position for every new direction
+					laserEndpointFound = false;
+					
 					// same as above but vertically upwards
 					if (row - 1 >= 0 && pieceAt(row - 1, col) == player) {
 						range = ((fieldvalue[row][col]) + (fieldvalue[row - 1][col]));
@@ -394,6 +424,12 @@ public class KodeKsData extends JPanel implements Serializable {
 							}
 						}
 					}
+					
+					// reset laser range for every new direction
+					range = 0;
+					// reset final laser position for every new direction
+					laserEndpointFound = false;
+					
 					// same as above but horizontally to the left
 					if (col - 1 >= 0 && pieceAt(row, col - 1) == player) {
 						range = ((fieldvalue[row][col]) + (fieldvalue[row][col - 1]));
@@ -412,6 +448,12 @@ public class KodeKsData extends JPanel implements Serializable {
 							}
 						}
 					}
+					
+					// reset laser range for every new direction
+					range = 0;
+					// reset final laser position for every new direction
+					laserEndpointFound = false;
+					
 					// same as above but diagonally from bottom right to top left
 					if (row - 1 >= 0 && col - 1 >= 0 && pieceAt(row - 1, col - 1) == player) {
 						range = ((fieldvalue[row][col]) + (fieldvalue[row - 1][col - 1]));
