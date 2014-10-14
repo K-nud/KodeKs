@@ -59,12 +59,12 @@ public class NewGameDialog implements ActionListener {
 				GUI.analysePanel.clearAnalyse();
 				RunKodeKs.mainGUI.repaint();
 
-				KodeKsBoard.Player1Name.setText(nameP1.getText());
-				KodeKsBoard.Player2Name.setText(nameP2.getText());
-				AnalysePanel.Player1Name.setText(nameP1.getText());
-				AnalysePanel.Player2Name.setText(nameP2.getText());
-				StatusPanel.Player1Name.setText(nameP1.getText());
-				StatusPanel.Player2Name.setText(nameP2.getText());
+				KodeKsBoard.player1Name.setText(nameP1.getText());
+				KodeKsBoard.player2Name.setText(nameP2.getText());
+				AnalysePanel.player1Name.setText(nameP1.getText());
+				AnalysePanel.player2Name.setText(nameP2.getText());
+				StatusPanel.player1Name.setText(nameP1.getText());
+				StatusPanel.player2Name.setText(nameP2.getText());
 				StatusPanel.rStones.setText("14");
 				StatusPanel.bStones.setText("14");
 

@@ -117,7 +117,7 @@ public class GUI extends JFrame implements ActionListener, MouseListener, Serial
 	 * 
 	 * @param loc
 	 *            - Location
-	 * @return
+	 * @return loc
 	 */
 	public Location processLocation(Location loc) {
 		return loc;

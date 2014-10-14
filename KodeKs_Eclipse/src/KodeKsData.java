@@ -102,7 +102,7 @@ public class KodeKsData extends JPanel implements Serializable {
 	/**
 	 * This array shows, where there are pieces on the board at the beginning of the game
 	 */
-	public final static int[][] BOARD_AT_START = {
+	public final static int[][] board_AT_START = {
 
 	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 2, 1, 2, 1, 2, 1, 2, 1, 0 }, { 0, 1, 0, 0, 0, 0, 0, 0, 2, 0 }, { 0, 2, 0, 0, 0, 0, 0, 0, 1, 0 },
 			{ 0, 1, 0, 0, 0, 0, 0, 0, 2, 0 }, { 0, 2, 0, 0, 0, 0, 0, 0, 1, 0 }, { 0, 1, 0, 0, 0, 0, 0, 0, 2, 0 }, { 0, 2, 0, 0, 0, 0, 0, 0, 1, 0 },
@@ -122,7 +122,7 @@ public class KodeKsData extends JPanel implements Serializable {
 	void setUpGame() {
 		for (int row = 0; row < 10; row++) {
 			for (int col = 0; col < 10; col++) {
-				board[row][col] = BOARD_AT_START[row][col];
+				board[row][col] = board_AT_START[row][col];
 			}
 		}
 	} // end setUpGame()
@@ -134,7 +134,7 @@ public class KodeKsData extends JPanel implements Serializable {
 	 *            - int
 	 * @param col
 	 *            - int
-	 * @return
+	 * @return contents of the board (empty/blue/red)- int
 	 */
 	int pieceAt(int row, int col) {
 		return board[row][col];
@@ -204,11 +204,11 @@ public class KodeKsData extends JPanel implements Serializable {
 			if (KodeKsBoard.currentPlayer == RED) {
 				ImageIcon iconP1 = new ImageIcon(getClass().getClassLoader().getResource("blueStone.png"));
 				point.setIcon(iconP1);
-				GUI.board.Player1_Stones.add(point);
+				GUI.board.player1_Stones.add(point);
 			} else {
 				ImageIcon iconP2 = new ImageIcon(getClass().getClassLoader().getResource("redStone.png"));
 				point.setIcon(iconP2);
-				GUI.board.Player2_Stones.add(point);
+				GUI.board.player2_Stones.add(point);
 			}
 			try {
 				AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResourceAsStream("Glass_break.wav"));
@@ -226,8 +226,8 @@ public class KodeKsData extends JPanel implements Serializable {
 				e.printStackTrace();
 			}
 			// recount the remaining pieces for each player
-			KodeKsBoard.NumberOfRedStones = GUI.board.getNumberOfStones(RED);
-			KodeKsBoard.NumberOfBlueStones = GUI.board.getNumberOfStones(BLUE);
+			KodeKsBoard.numberOfRedStones = GUI.board.getNumberOfStones(RED);
+			KodeKsBoard.numberOfBlueStones = GUI.board.getNumberOfStones(BLUE);
 		}
 	}
 
@@ -663,7 +663,7 @@ public class KodeKsData extends JPanel implements Serializable {
 	 *            - int
 	 * @param c2
 	 *            - int
-	 * @return
+	 * @return if player can make its move or not - boolean
 	 */
 	private boolean canMove(int player, int r1, int c1, int r2, int c2) {
 

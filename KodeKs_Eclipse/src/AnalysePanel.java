@@ -20,8 +20,8 @@ public class AnalysePanel extends JPanel implements Serializable {
 	private static JPanel analysePanel;
 	private static ArrayList<JLabel> analyse;
 	private static JLabel analyseLabel;
-	protected static JLabel Player1Name;
-	protected static JLabel Player2Name;
+	protected static JLabel player1Name;
+	protected static JLabel player2Name;
 	protected static JScrollPane analyseScroll;
 
 	/**
@@ -48,14 +48,14 @@ public class AnalysePanel extends JPanel implements Serializable {
 
 		JPanel redblue = new JPanel();
 		redblue.setLayout(new GridLayout(0, 3, 0, 0));
-		Player1Name = new JLabel("Player 1");
+		player1Name = new JLabel("Player 1");
 		JLabel vs = new JLabel("      vs.");
-		Player2Name = new JLabel("Player 2");
+		player2Name = new JLabel("Player 2");
 
 		add(redblue);
-		redblue.add(Player1Name);
+		redblue.add(player1Name);
 		redblue.add(vs);
-		redblue.add(Player2Name);
+		redblue.add(player2Name);
 		redblue.setBackground(new Color(51, 102, 255));
 		redblue.setPreferredSize(new Dimension(275, 16));
 

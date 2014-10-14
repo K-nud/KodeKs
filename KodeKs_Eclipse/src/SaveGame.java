@@ -19,8 +19,8 @@ public class SaveGame {
 		// Sets the Format for the Date we use
 		DateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy'-'HH-mm");
 		Date date = new Date();
-		fixedPlayer1 = new String(KodeKsBoard.Player1Name.getText());
-		fixedPlayer2 = new String(KodeKsBoard.Player2Name.getText());
+		fixedPlayer1 = new String(KodeKsBoard.player1Name.getText());
+		fixedPlayer2 = new String(KodeKsBoard.player2Name.getText());
 		// Create the title of the save-file
 		String saveGameTitle = fixedPlayer1 + "VS" + fixedPlayer2 + "_" + dateFormat.format(date) + ".kdk";
 
@@ -34,8 +34,8 @@ public class SaveGame {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
 			oos.writeObject(GUI.board.boardState);
 			oos.writeObject(KodeKsBoard.currentPlayer);
-			oos.writeObject(KodeKsBoard.Player1Name);
-			oos.writeObject(KodeKsBoard.Player2Name);
+			oos.writeObject(KodeKsBoard.player1Name);
+			oos.writeObject(KodeKsBoard.player2Name);
 			oos.writeObject(GUI.board.boardState);
 			oos.writeObject(KodeKsBoard.message);
 			// oos.writeObject(GUI.analysePanel);

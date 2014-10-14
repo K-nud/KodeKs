@@ -17,13 +17,13 @@ public class StatusPanel extends JPanel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	protected static JLabel Player1Name;
-	protected static JLabel Player2Name;
+	protected static JLabel player1Name;
+	protected static JLabel player2Name;
 	protected static JLabel rStones;
 	protected static JLabel bStones;
 
-	int NumberOfRedStones = 14;
-	int NumberOfBlueStones = 14;
+	int numberOfRedStones = 14;
+	int numberOfBlueStones = 14;
 
 	/**
 	 * 
@@ -49,26 +49,26 @@ public class StatusPanel extends JPanel implements Serializable {
 		statPanel.setLayout(new GridLayout(0, 2, 0, 0));
 
 		JPanel leftstat = new JPanel();
-		Player1Name = new JLabel("Player 1");
+		player1Name = new JLabel("Player 1");
 		ImageIcon iconP1 = new ImageIcon(getClass().getClassLoader().getResource("redStone.png"));
 		JLabel P1Stat = new JLabel(iconP1, JLabel.LEFT);
 		leftstat.add(P1Stat);
-		leftstat.add(Player1Name);
+		leftstat.add(player1Name);
 		JLabel P1StonesLeft = new JLabel("|  Stones left:", JLabel.LEFT);
 		leftstat.add(P1StonesLeft);
-		rStones = new JLabel("" + NumberOfRedStones);
+		rStones = new JLabel("" + numberOfRedStones);
 		leftstat.add(rStones);
 		statPanel.add(leftstat);
 
 		JPanel rightstat = new JPanel();
-		Player2Name = new JLabel("Player 2");
+		player2Name = new JLabel("Player 2");
 		ImageIcon iconP2 = new ImageIcon(getClass().getClassLoader().getResource("blueStone.png"));
 		JLabel P2Stat = new JLabel(iconP2, JLabel.LEFT);
 		rightstat.add(P2Stat);
-		rightstat.add(Player2Name);
+		rightstat.add(player2Name);
 		JLabel P2StonesLeft = new JLabel("|  Stones left:", JLabel.LEFT);
 		rightstat.add(P2StonesLeft);
-		bStones = new JLabel("" + NumberOfRedStones);
+		bStones = new JLabel("" + numberOfRedStones);
 		rightstat.add(bStones);
 		statPanel.add(rightstat);
 
