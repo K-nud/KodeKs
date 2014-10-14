@@ -30,7 +30,8 @@ public class AnalysePanel extends JPanel implements Serializable
 	 * Constructor of an analyse panel.
 	 * Here the players can see which moves they made during the game
 	 * 
-	 * @param size - Dimension
+	 * @param size 
+	 * 			- Dimension
 	 * 
 	 */
 	public AnalysePanel(Dimension size)
@@ -75,9 +76,12 @@ public class AnalysePanel extends JPanel implements Serializable
 	/**
 	 * Method to update the Analysepanel after each turn.
 	 * 
-	 * @param start - Location
-	 * @param end - Location
-	 * @param player - int
+	 * @param start 
+	 * 			- Location
+	 * @param end 
+	 * 			- Location
+	 * @param player 
+	 * 			- int
 	 */
 	public void updateAnalyse(Location start, Location end, int player)
 	{

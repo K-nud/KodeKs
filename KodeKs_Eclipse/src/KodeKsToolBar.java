@@ -18,6 +18,13 @@ public class KodeKsToolBar extends JToolBar{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 
+	 * @param listener
+	 * 				- GUI
+	 * @param size
+	 * 				- Dimension
+	 */
 	public KodeKsToolBar(GUI listener, Dimension size){
 		
 		setPreferredSize(size);

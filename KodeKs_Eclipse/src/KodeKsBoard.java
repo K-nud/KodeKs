@@ -16,7 +16,7 @@ import javax.swing.border.MatteBorder;
 
 /**
  * 
- * @author K. Vogel B. Suhr
+ * @author K. Vogel & B. Suhr
  * 
  */
 public class KodeKsBoard extends KodeKsData implements ActionListener,
@@ -128,6 +128,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 
 	/**
 	 * Start a new game
+	 * 
 	 */
 	public void doNewGame() {
 
@@ -158,6 +159,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 
 	/**
 	 * Current player resigns. Game ends. Opponent wins.
+	 * 
 	 */
 	public void doResign() {
 
@@ -565,14 +567,12 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 	}
 
 	public void updateBoard(KodeKsData boardState) {
 		legalMoves = boardState.getLegalMoves(currentPlayer);
 		getThreatenStones = boardState.getThreatenStone(currentPlayer);
 		repaint();
-		// TODO Auto-generated method stub
 	}
 
 } // end KodeKsBoard

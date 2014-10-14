@@ -20,8 +20,10 @@ public class GameOverPopup extends PopupWindow
 	 * Constructer of a "game over" popup. When this popup is visible the players can decide 
 	 * if they want to start a new game of KodeKs or if they want to quit.
 	 * 
-	 * @param parent - GUI
-	 * @param title - String
+	 * @param parent 
+	 * 				- GUI
+	 * @param title 
+	 * 				- String
 	 */
 	public GameOverPopup(GUI parent, String title)
 	{

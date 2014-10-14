@@ -18,7 +18,9 @@ public class PopupWindow extends JDialog
 	/**
 	 * 
 	 * @param parent
+	 * 				- GUI
 	 * @param title
+	 * 				- String
 	 */
 	public PopupWindow(GUI parent, String title)
 	{

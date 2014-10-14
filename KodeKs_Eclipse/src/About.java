@@ -37,7 +37,7 @@ public class About extends JDialog implements ActionListener {
 	
 	/**
 	* Dialog About
-	* @param parent - Object of the class Frame
+	* 
 	*/
 	public About() {
 	super();

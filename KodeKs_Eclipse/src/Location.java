@@ -12,60 +12,66 @@ public class Location implements Serializable
 {
 	private static final long serialVersionUID = 5087471276680520399L;
 	
-	int Row;
-	int Column;
+	int row;
+	int column;
 	
 	/**
 	 * 
 	 */
 	public Location()
 	{
-		Row = 0;
-		Column = 0;
+		row = 0;
+		column = 0;
 	}
 	
 	/**
 	 * 
-	 * @param Row
-	 * @param Column
+	 * @param row
+	 * 			- int
+	 * @param column
+	 * 			- int
 	 */
-	public Location(int Row, int Column)
+	public Location(int row, int column)
 	{
-		this.Row = Row;
-		this.Column = Column;
+		this.row = row;
+		this.column = column;
 	}
 	
 	/**
 	 * 
 	 * @param move
+	 * 			- KodeKsMove
 	 */
 	public Location(KodeKsData.KodeKsMove move)
 	{
-		this.Row = move.fromRow;
-		this.Column = move.fromCol;
+		this.row = move.fromRow;
+		this.column = move.fromCol;
 	}
 	
 	/**
 	 * 
-	 * @return int - row
+	 * @return row
+	 * 			- int
 	 */
 	public int getRow()
 	{
-		return Row;
+		return row;
 	}
 	
 	/**
 	 * 
-	 * @return int column
+	 * @return column
+	 * 			- int
 	 */
 	public int getCol()
 	{
-		return Column;
+		return column;
 	}
 	
 	/**
 	 * 
 	 * @param loc
+	 * 			- Location
 	 * @return boolean
 	 */
     public boolean equals(Location loc)

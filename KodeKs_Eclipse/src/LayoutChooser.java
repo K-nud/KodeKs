@@ -25,7 +25,11 @@ public class LayoutChooser extends AbstractAction implements ActionListener, Act
 	private static final long serialVersionUID = 1L;
 	
 	
-	
+	/**
+	 * 
+	 * @param mother
+	 * 				- JMenu
+	 */
 	public LayoutChooser(JMenu mother){
 		
 		JMenu frameLayout = new JMenu("Layout");
@@ -66,6 +70,9 @@ public class LayoutChooser extends AbstractAction implements ActionListener, Act
 	    mother.add(frameLayout);
 	}
 	
+	/**
+	 * 
+	 */
 	public void actionPerformed(ActionEvent e) {
 		
 		if (e.getActionCommand()=="system")
@@ -106,33 +113,28 @@ public class LayoutChooser extends AbstractAction implements ActionListener, Act
 	}
 	@Override
 	public void addPropertyChangeListener(PropertyChangeListener arg0) {
-		// TODO Auto-generated method stub
-		
 	}
+	
 	@Override
 	public Object getValue(String arg0) {
-		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
 		return false;
 	}
+	
 	@Override
 	public void putValue(String arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
 	}
+	
 	@Override
 	public void removePropertyChangeListener(PropertyChangeListener arg0) {
-		// TODO Auto-generated method stub
-		
 	}
+	
 	@Override
 	public void setEnabled(boolean arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	

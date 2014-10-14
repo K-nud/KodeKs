@@ -68,6 +68,7 @@ public class ResignDialog implements ActionListener{
 	       * ends at any point in this class
 	       * 
 		  * @param str
+		  * 		- String
 		  */
 	      void gameOver(String str) {
 	    	  GUI.board.gameInProgress = false;

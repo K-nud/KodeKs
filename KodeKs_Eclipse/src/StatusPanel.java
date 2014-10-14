@@ -29,8 +29,11 @@ public class StatusPanel extends JPanel implements Serializable{
 	/**
 	 * 
 	 * @param boardstate
+	 * 				- KodeKsData
 	 * @param parent
+	 * 				- GUI
 	 * @param size
+	 * 				- Dimension
 	 */
 	public StatusPanel(KodeKsData boardstate, GUI parent, Dimension size){
 	

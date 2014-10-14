@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 
 /**
  * Frame contains informations about the rules of the game
+ * 
  * @author K. Vogel & B. Suhr
  *
  */
@@ -92,7 +93,7 @@ public class HowToPlayFrame extends JFrame implements ActionListener {
 						"The range of a stone is determined by the amount of dots beneath the stone itself. If there are 1-3 dots, the stone can only move the amount of fields according to the amount of buttons. A stone with 4 dots have a variable range between 1 and 4.\n"	+
 						"A player may move a stone into any direction: horizontally, vertically or diagonally onto a free field. It's allowed to leap over existing buttons.\n\n" +
 						"Forbidden combination:\nIt's not allowed to have a stone next to 2 other stones.\n\n" +
-						"If a player ignores this rule, the other player is allowed to take any one of the 3 stones from the board.\n\n" +
+						"If a player ignores this rule, the other player is allowed to take one of the 3 stones from the board.\n\n" +
 						"The goal of a turn is to build up threat on your opponent. But also try to avoid the loss of your own stones.\n");
 				}
 		});
@@ -160,8 +161,6 @@ public class HowToPlayFrame extends JFrame implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

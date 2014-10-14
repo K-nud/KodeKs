@@ -40,7 +40,8 @@ public class GUI extends JFrame implements ActionListener,MouseListener, Seriali
 	 * The mainframe of the GUI contains a menubar, a toolbar, a panel on which the board is displayed, an AnaLysePanel to show 
 	 * the maked moves during the game and a StatusPanel which displays messages (e.g. who's turn it is).
 	 * 
-	 * @param boardState - KodeKsData
+	 * @param boardState 
+	 * 				- KodeKsData
 	 */
 	public GUI(KodeKsData boardState) {
 		
@@ -121,6 +122,12 @@ public class GUI extends JFrame implements ActionListener,MouseListener, Seriali
 		return analysePanel;
 	}
 	
+	/**
+	 * 
+	 * @param loc
+	 * 			- Location
+	 * @return
+	 */
 	public Location processLocation(Location loc)
 	{
 			return loc;
@@ -132,6 +139,11 @@ public class GUI extends JFrame implements ActionListener,MouseListener, Seriali
 		quitDlg.setVisible(true);
 	}
 	
+	/**
+	 * 
+	 * @param outcome
+	 * 				- int
+	 */
 	public static void gameOver(int outcome)
 	{
 		if(outcome==1)

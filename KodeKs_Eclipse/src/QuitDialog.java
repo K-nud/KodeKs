@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 	/**
 	 * 
 	 * @param parent
+	 * 				- GUI
 	 */
 	public QuitDialog(GUI parent){
 

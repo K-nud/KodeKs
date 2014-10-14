@@ -11,9 +11,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+
 /**
  * An object of this class holds data about a game of KodeKs. It knows what kind of piece is on each square of the KodeKsboard. Methods are provided to return
  * lists of available legal moves.
+ * 
+ * @author K. Vogel & B. Suhr
+ * 
  */
 public class KodeKsData extends JPanel implements Serializable {
 
@@ -31,6 +35,7 @@ public class KodeKsData extends JPanel implements Serializable {
 	/**
 	 * A KodeKsMove object represents a move in the game of KodeKs. It holds the row and column of the piece that is to be moved and the row and column of the
 	 * square to which it is to be moved. (This class makes no guarantee that the move is legal.)
+	 * 
 	 */
 	public static class KodeKsMove implements Serializable {
 		/**
@@ -56,8 +61,8 @@ public class KodeKsData extends JPanel implements Serializable {
 	 */
 	public static class ThreatenStone implements Serializable {
 		/**
-			 * 
-			 */
+		 * 
+		 */
 		private static final long serialVersionUID = 1L;
 		int threatenRow, threatenCol; // Position of threaten piece
 
@@ -126,7 +131,13 @@ public class KodeKsData extends JPanel implements Serializable {
 
 	/**
 	 * Return the contents of the square in the specified row and column.
-	 */
+	 * 
+	 * @param row
+	 * 			- int
+	 * @param col
+	 * 			- int
+	 * @return
+	 */ 
 	int pieceAt(int row, int col) {
 		return board[row][col];
 	}
@@ -168,14 +179,21 @@ public class KodeKsData extends JPanel implements Serializable {
 	}
 
 	/**
-	 * Take a specified threaten Stone of the opponent
-	 */
+	 * 	 * Take a specified threaten Stone of the opponent
+	 * 
+	 * @param take - ThreatenStone
+	 */	 
 	void takeStone(ThreatenStone take) {
 		takeStone(take.threatenRow, take.threatenCol);
 	}
 
 	/**
 	 * Take the opponents stone. It is assumed that the stone can be taken. and put it on the panel beside the board
+	 * 
+	 * @param row
+	 *            - int
+	 * @param col
+	 *            - int
 	 */
 	void takeStone(int row, int col) {
 		if (board[row][col] != EMPTY) {
@@ -210,12 +228,7 @@ public class KodeKsData extends JPanel implements Serializable {
 			}
 
 			KodeKsBoard.NumberOfRedStones = GUI.board.getNumberOfStones(RED);// recount
-			// the
-			// left
-			// pieces
-			// of
-			// each
-			// player
+																			// the left pieces of each player
 			KodeKsBoard.NumberOfBlueStones = GUI.board.getNumberOfStones(BLUE);
 		}
 	}
@@ -519,6 +532,13 @@ public class KodeKsData extends JPanel implements Serializable {
 	/**
 	 * This is called by the getThreatenStone() method to determine whether the player can take an opponents stone from (row,col). It is assumed that (row,col)
 	 * contains one of the opponent player's pieces.
+	 * 
+	 * @param player
+	 * 			  - int	
+	 * @param row
+	 *            - int
+	 * @param col
+	 *            - int
 	 */
 	private boolean canTakeThreatenStone(int player, int row, int col) {
 
@@ -530,6 +550,8 @@ public class KodeKsData extends JPanel implements Serializable {
 
 	/**
 	 * Make the specified move. It is assumed that move is non-null and that the move it represents is legal.
+	 * @param move
+	 * 			- KodeKsMove
 	 */
 	void makeMove(KodeKsMove move) {
 		makeMove(move.fromRow, move.fromCol, move.toRow, move.toCol);
@@ -537,6 +559,15 @@ public class KodeKsData extends JPanel implements Serializable {
 
 	/**
 	 * Make the move from (fromRow,fromCol) to (toRow,toCol). It is assumed that this move is legal.
+	 * 
+	 * @param fromRow
+	 * 			- int
+	 * @param fromCol
+	 * 			- int
+	 * @param toRow
+	 * 			- int
+	 * @param toCol
+	 * 			- int
 	 */
 	void makeMove(int fromRow, int fromCol, int toRow, int toCol) {
 		board[toRow][toCol] = board[fromRow][fromCol];
@@ -623,8 +654,19 @@ public class KodeKsData extends JPanel implements Serializable {
 	} // end getLegalMoves
 
 	/**
-	 * This is called by the getLegalMoves() method to determine whether the player can legally move from (r1,c1) to (r2,c2). It is assumed that (r1,r2)
+	 * 	 * This is called by the getLegalMoves() method to determine whether the player can legally move from (r1,c1) to (r2,c2). It is assumed that (r1,r2)
 	 * contains one of the player's pieces and that (r2,c2) is a neighboring square.
+	 * @param player
+	 * 			- int
+	 * @param r1
+	 * 			- int
+	 * @param c1
+	 * 			- int
+	 * @param r2
+	 * 			- int
+	 * @param c2
+	 * 			- int
+	 * @return
 	 */
 	private boolean canMove(int player, int r1, int c1, int r2, int c2) {
 
