@@ -211,7 +211,7 @@ public class KodeKsData extends JPanel implements Serializable {
 				GUI.board.player2_Stones.add(point);
 			}
 			try {
-				AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResourceAsStream("Glass_break.wav"));
+				AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource("Glass_break.wav"));
 				AudioFormat af = audioInputStream.getFormat();
 				int size = (int) (af.getFrameSize() * audioInputStream.getFrameLength());
 				byte[] audio = new byte[size];
