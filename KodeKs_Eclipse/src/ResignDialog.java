@@ -55,7 +55,7 @@ public class ResignDialog implements ActionListener{
 	 */
 		public void doResign() {
 	         
-	         if (KodeKsBoard.currentPlayer == KodeKsBoard.RED)
+	         if (KodeKsBoard.currentPlayer == KodeKsBoard.red)
 	            gameOver("RED resigns.  BLUE wins.");
 	         else
 	            gameOver("BLUE resigns.  RED wins.");

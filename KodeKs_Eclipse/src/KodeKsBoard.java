@@ -30,15 +30,15 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 	protected static JLabel message; // a message label which shows who's turn
 										// it is
 
-	protected JPanel Player1_Stones; // On these labels are the taken Stones
-	protected JPanel Player2_Stones;
-	protected static JLabel Player1Name; // On these Labels are the names of the
+	protected JPanel player1_Stones; // On these labels are the taken Stones
+	protected JPanel player2_Stones;
+	protected static JLabel player1Name; // On these Labels are the names of the
 											// two players
-	protected static JLabel Player2Name;
+	protected static JLabel player2Name;
 
-	static int NumberOfRedStones = 0; // these inegers represents the left
+	static int numberOfRedStones = 0; // these inegers represents the left
 										// stones of each player
-	static int NumberOfBlueStones = 0;
+	static int numberOfBlueStones = 0;
 	protected static JPanel board; // This panel contains the board, the
 									// statuspanel and the "stonepanels"
 
@@ -92,37 +92,37 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 		/*
 		 * adds a panel for each player on which he collect his taken pieces
 		 */
-		Player1_Stones = new JPanel();
-		Player1_Stones.setPreferredSize(new Dimension(65, 625));
-		Player1_Stones
-				.setLayout(new BoxLayout(Player1_Stones, BoxLayout.Y_AXIS));
-		Player1_Stones.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(
+		player1_Stones = new JPanel();
+		player1_Stones.setPreferredSize(new Dimension(65, 625));
+		player1_Stones
+				.setLayout(new BoxLayout(player1_Stones, BoxLayout.Y_AXIS));
+		player1_Stones.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(
 				0, 0, 0)));
-		add(Player1_Stones, BorderLayout.WEST);
+		add(player1_Stones, BorderLayout.WEST);
 
-		Player1Name = new JLabel("Player 1");
-		Player1Name.setAlignmentX(CENTER_ALIGNMENT);
-		Player1_Stones.add(Player1Name);
+		player1Name = new JLabel("Player 1");
+		player1Name.setAlignmentX(CENTER_ALIGNMENT);
+		player1_Stones.add(player1Name);
 
-		Player2_Stones = new JPanel();
-		Player2_Stones.setPreferredSize(new Dimension(65, 625));
-		Player2_Stones
-				.setLayout(new BoxLayout(Player2_Stones, BoxLayout.Y_AXIS));
-		Player2_Stones.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(
+		player2_Stones = new JPanel();
+		player2_Stones.setPreferredSize(new Dimension(65, 625));
+		player2_Stones
+				.setLayout(new BoxLayout(player2_Stones, BoxLayout.Y_AXIS));
+		player2_Stones.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(
 				0, 0, 0)));
-		add(Player2_Stones, BorderLayout.EAST);
+		add(player2_Stones, BorderLayout.EAST);
 
-		Player2Name = new JLabel("Player 2");
-		Player2Name.setAlignmentX(CENTER_ALIGNMENT);
-		Player2_Stones.add(Player2Name);
+		player2Name = new JLabel("Player 2");
+		player2Name.setAlignmentX(CENTER_ALIGNMENT);
+		player2_Stones.add(player2Name);
 
 		addMouseListener(this);
 		message = new JLabel("");
 		message.setAlignmentX(CENTER_ALIGNMENT);
 		message.setFont(new Font("Courier", Font.BOLD, 32));
 		message.setForeground(Color.BLACK);
-		NumberOfRedStones = boardState.getNumberOfStones(RED);
-		NumberOfBlueStones = boardState.getNumberOfStones(BLUE);
+		numberOfRedStones = boardState.getNumberOfStones(red);
+		numberOfBlueStones = boardState.getNumberOfStones(blue);
 		doNewGame();
 	}
 
@@ -133,26 +133,26 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 	public void doNewGame() {
 
 		boardState.setUpGame(); // Set up the pieces.
-		Player1_Stones.removeAll();
+		player1_Stones.removeAll();
 		// Player1Name = new JLabel("Player 1");
-		Player1Name.setAlignmentX(CENTER_ALIGNMENT);
-		Player1_Stones.add(Player1Name);
-		Player2_Stones.removeAll();
+		player1Name.setAlignmentX(CENTER_ALIGNMENT);
+		player1_Stones.add(player1Name);
+		player2_Stones.removeAll();
 		// Player2Name = new JLabel("Player 2");
-		Player2Name.setAlignmentX(CENTER_ALIGNMENT);
-		Player2_Stones.add(Player2Name);
-		currentPlayer = KodeKsData.RED; // RED moves first.
-		getThreatenStones = getThreatenStone(KodeKsData.RED); // Get the BLUE
+		player2Name.setAlignmentX(CENTER_ALIGNMENT);
+		player2_Stones.add(player2Name);
+		currentPlayer = KodeKsData.red; // RED moves first.
+		getThreatenStones = getThreatenStone(KodeKsData.red); // Get the BLUE
 																// stones which
 																// are threaten
 																// by RED (is
 																// empty at the
 																// beginning)
-		legalMoves = getLegalMoves(KodeKsData.RED); // Get RED's legal moves.
+		legalMoves = getLegalMoves(KodeKsData.red); // Get RED's legal moves.
 		selectedRow = -1; // RED has not yet selected a piece to move.
-		message.setText(Player1Name.getText() + ": Make your move.");
-		NumberOfRedStones = getNumberOfStones(RED);
-		NumberOfBlueStones = getNumberOfStones(BLUE);
+		message.setText(player1Name.getText() + ": Make your move.");
+		numberOfRedStones = getNumberOfStones(red);
+		numberOfBlueStones = getNumberOfStones(blue);
 		gameInProgress = true;
 		repaint();
 	}
@@ -163,7 +163,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 	 */
 	public void doResign() {
 
-		if (currentPlayer == KodeKsData.RED)
+		if (currentPlayer == KodeKsData.red)
 			gameOver("RED resigns.  BLUE wins.");
 		else
 			gameOver("BLUE resigns.  RED wins.");
@@ -201,10 +201,10 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 			if (legalMoves[i].fromRow == row && legalMoves[i].fromCol == col) {
 				selectedRow = row;
 				selectedCol = col;
-				if (currentPlayer == KodeKsData.RED)
-					message.setText(Player1Name.getText() + ": Make your move.");
+				if (currentPlayer == KodeKsData.red)
+					message.setText(player1Name.getText() + ": Make your move.");
 				else
-					message.setText(Player2Name.getText() + ": Make your move.");
+					message.setText(player2Name.getText() + ": Make your move.");
 				repaint();
 				return;
 			}
@@ -278,26 +278,26 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 		Location start = new Location(move.fromRow, move.fromCol);
 		Location end = new Location(move.toRow, move.toCol);
 		GUI.analysePanel.updateAnalyse(start, end, currentPlayer);
-		if (currentPlayer == KodeKsData.RED) {
-			currentPlayer = KodeKsData.BLUE;
+		if (currentPlayer == KodeKsData.red) {
+			currentPlayer = KodeKsData.blue;
 			getThreatenStones = boardState.getThreatenStone(currentPlayer);
 			legalMoves = boardState.getLegalMoves(currentPlayer);
-			NumberOfBlueStones = boardState.getNumberOfStones(BLUE);
-			StatusPanel.bStones.setText("" + NumberOfBlueStones);
-			if (NumberOfBlueStones <= 4)
-				GUI.gameOver(RED);
+			numberOfBlueStones = boardState.getNumberOfStones(blue);
+			StatusPanel.bStones.setText("" + numberOfBlueStones);
+			if (numberOfBlueStones <= 4)
+				GUI.gameOver(red);
 			else
-				message.setText(Player2Name.getText() + ": Make your move.");
+				message.setText(player2Name.getText() + ": Make your move.");
 		} else {
-			currentPlayer = KodeKsData.RED;
+			currentPlayer = KodeKsData.red;
 			getThreatenStones = boardState.getThreatenStone(currentPlayer);
 			legalMoves = boardState.getLegalMoves(currentPlayer);
-			NumberOfRedStones = boardState.getNumberOfStones(RED);
-			StatusPanel.rStones.setText("" + NumberOfRedStones);
-			if (NumberOfRedStones <= 4)
-				GUI.gameOver(BLUE);
+			numberOfRedStones = boardState.getNumberOfStones(red);
+			StatusPanel.rStones.setText("" + numberOfRedStones);
+			if (numberOfRedStones <= 4)
+				GUI.gameOver(blue);
 			else
-				message.setText(Player1Name.getText() + ": Make your move.");
+				message.setText(player1Name.getText() + ": Make your move.");
 		}
 
 		/*
@@ -367,14 +367,14 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 
 				/* Draw the Pieces on the board */
 				switch (boardState.pieceAt(row, col)) {
-				case RED:
+				case red:
 					ImageIcon red = new ImageIcon(getClass().getClassLoader()
 							.getResource("redStone.png"));
 					red.paintIcon(this, g, 133 + col * 50, 77 + row * 50);
 					// g.setColor(Color.RED);
 					// g.fillOval(132 + col*50, 76 + row*50, 40, 40);
 					break;
-				case BLUE:
+				case blue:
 					ImageIcon blue = new ImageIcon(getClass().getClassLoader()
 							.getResource("blueStone.png"));
 					blue.paintIcon(this, g, 133 + col * 50, 77 + row * 50);
@@ -482,7 +482,7 @@ public class KodeKsBoard extends KodeKsData implements ActionListener,
 			int laserRow;
 
 			if (laserFields != null) {
-				if (currentPlayer == BLUE) {
+				if (currentPlayer == blue) {
 					laserHorizontal = new ImageIcon(getClass().getClassLoader()
 							.getResource("Laser_Animated_blue_hor.gif"));
 					laserVertical = new ImageIcon(getClass().getClassLoader()
