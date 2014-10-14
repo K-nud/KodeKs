@@ -56,45 +56,6 @@ public class ResignDialog implements ActionListener {
 	/**
 	 * 	
 	 */
-<<<<<<< HEAD
-		public void doResign() {
-	         
-	         if (KodeKsBoard.currentPlayer == KodeKsBoard.red)
-	            gameOver("RED resigns.  BLUE wins.");
-	         else
-	            gameOver("BLUE resigns.  RED wins.");
-	      }
-		
-		 /**
-		  *  The game ends.  The parameter, str, is displayed as a message
-	       * to the user.  The states of the buttons are adjusted so players
-	       * can start a new game.  This method is called when the game
-	       * ends at any point in this class
-	       * 
-		  * @param str
-		  * 		- String
-		  */
-	      void gameOver(String str) {
-	    	  GUI.board.gameInProgress = false;
-	    	  ResignDialog.resignmessage.setText(str);
-	    	  cancelButton.setText("close");
-	    	  confirmButton.setText("new game");
-	    	  confirmButton.addActionListener(new ActionListener(){
-	    		  public void actionPerformed(ActionEvent e){
-	    			  resignDlg.dispose();
-	    			  new NewGameDialog();
-	    			  }});        
-	      }
-		@Override
-		public void actionPerformed(ActionEvent e) {
-		}
-		
-}
-	 
-		 
-	
-	 
-=======
 	public void doResign() {
 
 		if (KodeKsBoard.currentPlayer == KodeKsBoard.RED)
@@ -102,7 +63,6 @@ public class ResignDialog implements ActionListener {
 		else
 			gameOver("BLUE resigns.  RED wins.");
 	}
->>>>>>> origin/master
 
 	/**
 	 * The game ends. The parameter, str, is displayed as a message to the user. The states of the buttons are adjusted so players can start a new game. This

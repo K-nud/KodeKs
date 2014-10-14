@@ -90,7 +90,7 @@ public class KodeKsData extends JPanel implements Serializable {
 	/*
 	 * The three possible states of a field
 	 */
-	static final int EMPTY = 0, red = 1, blue = 2;
+	static final int EMPTY = 0, RED = 1, BLUE = 2;
 
 	/**
 	 * This array shows the value of each field of the board
@@ -102,7 +102,7 @@ public class KodeKsData extends JPanel implements Serializable {
 	/**
 	 * This array shows, where there are pieces on the board at the beginning of the game
 	 */
-	public final static int[][] board_AT_START = {
+	public final static int[][] BOARD_AT_START = {
 
 	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 2, 1, 2, 1, 2, 1, 2, 1, 0 }, { 0, 1, 0, 0, 0, 0, 0, 0, 2, 0 }, { 0, 2, 0, 0, 0, 0, 0, 0, 1, 0 },
 			{ 0, 1, 0, 0, 0, 0, 0, 0, 2, 0 }, { 0, 2, 0, 0, 0, 0, 0, 0, 1, 0 }, { 0, 1, 0, 0, 0, 0, 0, 0, 2, 0 }, { 0, 2, 0, 0, 0, 0, 0, 0, 1, 0 },
@@ -122,7 +122,7 @@ public class KodeKsData extends JPanel implements Serializable {
 	void setUpGame() {
 		for (int row = 0; row < 10; row++) {
 			for (int col = 0; col < 10; col++) {
-				board[row][col] = board_AT_START[row][col];
+				board[row][col] = BOARD_AT_START[row][col];
 			}
 		}
 	} // end setUpGame()
@@ -201,14 +201,14 @@ public class KodeKsData extends JPanel implements Serializable {
 			JLabel point = new JLabel(""); // puts the taken stone into the panel on the side
 
 			point.setAlignmentX(CENTER_ALIGNMENT);
-			if (KodeKsBoard.currentPlayer == red) {
+			if (KodeKsBoard.currentPlayer == RED) {
 				ImageIcon iconP1 = new ImageIcon(getClass().getClassLoader().getResource("blueStone.png"));
 				point.setIcon(iconP1);
-				GUI.board.player1_Stones.add(point);
+				GUI.board.Player1_Stones.add(point);
 			} else {
 				ImageIcon iconP2 = new ImageIcon(getClass().getClassLoader().getResource("redStone.png"));
 				point.setIcon(iconP2);
-				GUI.board.player2_Stones.add(point);
+				GUI.board.Player2_Stones.add(point);
 			}
 			try {
 				AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResourceAsStream("Glass_break.wav"));
@@ -225,16 +225,9 @@ public class KodeKsData extends JPanel implements Serializable {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-<<<<<<< HEAD
-
-			KodeKsBoard.numberOfRedStones = GUI.board.getNumberOfStones(red);// recount
-																			// the left pieces of each player
-			KodeKsBoard.numberOfBlueStones = GUI.board.getNumberOfStones(blue);
-=======
 			// recount the remaining pieces for each player
 			KodeKsBoard.NumberOfRedStones = GUI.board.getNumberOfStones(RED);
 			KodeKsBoard.NumberOfBlueStones = GUI.board.getNumberOfStones(BLUE);
->>>>>>> origin/master
 		}
 	}
 
@@ -254,7 +247,7 @@ public class KodeKsData extends JPanel implements Serializable {
 
 	ThreatenStone[] getThreatenStone(int player) {
 
-		if (player != red && player != blue)
+		if (player != RED && player != BLUE)
 			return null;
 
 		// reset list of threatened stones
@@ -586,7 +579,7 @@ public class KodeKsData extends JPanel implements Serializable {
 	 */
 	KodeKsMove[] getLegalMoves(int player) {
 
-		if (player != red && player != blue)
+		if (player != RED && player != BLUE)
 			return null;
 
 		moves = new ArrayList<KodeKsMove>(); // Moves will be stored in this

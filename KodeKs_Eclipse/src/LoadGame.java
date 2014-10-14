@@ -46,12 +46,12 @@ public class LoadGame {
 		KodeKsBoard.message.setText(message.getText());
 		
 		//apply names to labels
-   		KodeKsBoard.player1Name.setText(player1Name.getText());
-   		KodeKsBoard.player2Name.setText(player2Name.getText());
-   		AnalysePanel.player1Name.setText(player1Name.getText());
-   		AnalysePanel.player2Name.setText(player2Name.getText());
-   		StatusPanel.player1Name.setText(player1Name.getText());
-   		StatusPanel.player2Name.setText(player2Name.getText());
+   		KodeKsBoard.Player1Name.setText(player1Name.getText());
+   		KodeKsBoard.Player2Name.setText(player2Name.getText());
+   		AnalysePanel.Player1Name.setText(player1Name.getText());
+   		AnalysePanel.Player2Name.setText(player2Name.getText());
+   		StatusPanel.Player1Name.setText(player1Name.getText());
+   		StatusPanel.Player2Name.setText(player2Name.getText());
    		
    		//update board to properly reflect allowed moves and threatened stones
 		RunKodeKs.mainGUI.board.updateBoard(stateofdatboard);
