@@ -6,11 +6,13 @@ import java.awt.event.WindowEvent;
 import javax.swing.*;
 
 
-
+/**
+ * Dialog shows informations about the authors and the version of the 
+ * implementation of KodeKs
+ * @author K. Vogel & B. Suhr
+ */
 public class About extends JDialog implements ActionListener {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	JPanel panel1 = new JPanel();
 	JPanel panel2 = new JPanel();
@@ -29,9 +31,10 @@ public class About extends JDialog implements ActionListener {
 	String about = "About KodeKs";
 	String product = "KodeKs";
 	String version = "Version 1.0";
-	String copyright = "Copyright (c) 2013 by";
-	String comments = "Knud Vogel";
+	String copyright = "Copyright (c) 2014 by";
+	String comments = "Knud Vogel & Benjamin Suhr";
 	GridBagLayout gridBagLayout1 = new GridBagLayout();
+	
 	/**
 	* Dialog About
 	* @param parent - Object of the class Frame
@@ -86,18 +89,18 @@ public class About extends JDialog implements ActionListener {
 	panel1.add(panel2, BorderLayout.NORTH);
 	}
 	
-	//Ueberschrieben, so dass das Fenster geschlossen werden kann
+	//overwrite to close the window
 	protected void processWindowEvent(WindowEvent e) {
 	if (e.getID() == WindowEvent.WINDOW_CLOSING) {
 	cancel();
 	}
 	super.processWindowEvent(e);
 	}
-	//Dialog schliessen
+	//close dialog
 	void cancel() {
 	dispose();
 	}
-	//Dialog bei Ereignis der Schaltflaeche schliessen
+	//close dialog after actionevent
 	public void actionPerformed(ActionEvent e) {
 	if (e.getSource() == close) {
 	cancel();

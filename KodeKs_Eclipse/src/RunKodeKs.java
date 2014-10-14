@@ -5,7 +5,11 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-
+/**
+ * 
+ * @author K. Vogel & B. Suhr
+ *
+ */
 public class RunKodeKs implements Serializable {
 /**
 	 * 
@@ -22,7 +26,6 @@ static GUI mainGUI;
 						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					} catch (ClassNotFoundException | InstantiationException
 							| IllegalAccessException | UnsupportedLookAndFeelException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					SwingUtilities.updateComponentTreeUI(mainGUI);

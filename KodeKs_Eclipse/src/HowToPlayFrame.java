@@ -17,12 +17,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
+/**
+ * Frame contains informations about the rules of the game
+ * @author K. Vogel & B. Suhr
+ *
+ */
 public class HowToPlayFrame extends JFrame implements ActionListener {
 
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -63,7 +65,7 @@ public class HowToPlayFrame extends JFrame implements ActionListener {
 		buttonPanel.setLayout(gbl_panel_1);
 		
 		/*
-		 * Construction of the different buttons to get informations how to play KodeKs0
+		 * Construction of the different buttons to get informations how to play KodeKs
 		 */
 		
 		//Home-Button
@@ -89,10 +91,8 @@ public class HowToPlayFrame extends JFrame implements ActionListener {
 						"Red and Blue move one of their stones in alternate order. Each player has to move a stone in their turn - even if it's harmful.\n" +
 						"The range of a stone is determined by the amount of dots beneath the stone itself. If there are 1-3 dots, the stone can only move the amount of fields according to the amount of buttons. A stone with 4 dots have a variable range between 1 and 4.\n"	+
 						"A player may move a stone into any direction: horizontally, vertically or diagonally onto a free field. It's allowed to leap over existing buttons.\n\n" +
-						"(picture)\n\n" +
-						"Forbidden combination: It's not allowed to have a stone next to 2 other stones.\n\n" +
-						"(examples)\n\n" +
-						"If a player ignores this rule, the other player is allowed to take any one of the 3 stones from the board.\n" +
+						"Forbidden combination:\nIt's not allowed to have a stone next to 2 other stones.\n\n" +
+						"If a player ignores this rule, the other player is allowed to take any one of the 3 stones from the board.\n\n" +
 						"The goal of a turn is to build up threat on your opponent. But also try to avoid the loss of your own stones.\n");
 				}
 		});
@@ -110,12 +110,11 @@ public class HowToPlayFrame extends JFrame implements ActionListener {
 				informationsKodeks.setText("Strike Stones:\n" +
 						"Only two stones directly next to each other (horizontally, vertically or diagonally) represent a binding and are able to destroy a enemy stone.\n" +
 						"The range of such a binding is determined by the amount of dots beneath those two stones. Enemy stones within this range are threatened.\n" +
-						"(zwei Beispiele)\n\n" +
 						"Only the nearest opponent stone within the 2 directions may be striked - the ones covered by stones infront of them are 'save' and can't be striked.\n\n" +
-						"Attack \n" +
-						"1. Active threat" +
-						"2. Reaction" +
-						"3. Strike!" +
+						"Attack: \n" +
+						"1. Active threat\n" +
+						"2. Reaction\n" +
+						"3. Strike!\n\n" +
 						"A threat occurs if a player builds up a binding, which range threatens an opponent stones.\n" +
 						"As a reaction the opponent has the possibility to save one of his threatened stones.\n" +
 						"The threat could also occur passive, if a player moves one of his stones into the threat range of an enemies binding. The enemy may strike the stoned moved in his next turn - without a waiting penalty.\n" +
@@ -135,7 +134,7 @@ public class HowToPlayFrame extends JFrame implements ActionListener {
 		JButton howToWin_Button = new JButton("How to win");
 		howToWin_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				informationsKodeks.setText("The goal of the game is to collect 10 stones from your opponent.");
+				informationsKodeks.setText("The goal of the game is to collect 10 stones from your opponent.\n");
 				}
 		});
 		GridBagConstraints gbc_howToWin_Button = new GridBagConstraints();

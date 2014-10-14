@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import javax.swing.*;
 import java.io.Serializable;
 
+
 /**
+ * Table of the moves each player did
+ *  
+ * @author K. Vogel & B. Suhr 
  * 
- * @author Knud Vogel
- *
  */
 public class AnalysePanel extends JPanel implements Serializable
 {
@@ -23,10 +25,13 @@ public class AnalysePanel extends JPanel implements Serializable
 	protected static JLabel Player1Name;
 	protected static JLabel Player2Name;
 	protected static JScrollPane analyseScroll;
+	
 	/**
 	 * Constructor of an analyse panel.
-	 * Here the players can see which moves they mad during the game
+	 * Here the players can see which moves they made during the game
+	 * 
 	 * @param size - Dimension
+	 * 
 	 */
 	public AnalysePanel(Dimension size)
 	{
@@ -69,6 +74,7 @@ public class AnalysePanel extends JPanel implements Serializable
 	
 	/**
 	 * Method to update the Analysepanel after each turn.
+	 * 
 	 * @param start - Location
 	 * @param end - Location
 	 * @param player - int
@@ -109,7 +115,8 @@ public class AnalysePanel extends JPanel implements Serializable
 	}
 	
 	/**
-	 * method to redisplay the AnalysePanel
+	 * Method to redisplay the AnalysePanel
+	 * 
 	 */
 	public static void redisplayAnalyse()
 	{
@@ -121,6 +128,7 @@ public class AnalysePanel extends JPanel implements Serializable
 		
 	/**
 	 * Method to fill the AnalysePanel
+	 * 
 	 */
 	public static void fillAnalyse()
 	{
@@ -148,6 +156,7 @@ public class AnalysePanel extends JPanel implements Serializable
 	
 	/**
 	 * Method to unfill the AnalysePanel
+	 * 
 	 */
 	public static void unfillAnalyse()
 	{
@@ -164,6 +173,7 @@ public class AnalysePanel extends JPanel implements Serializable
 	
 	/**
 	 * Method to clear the AnalysePanel
+	 * 
 	 */
 	public void clearAnalyse()
 	{

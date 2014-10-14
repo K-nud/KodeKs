@@ -11,7 +11,12 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-
+/**
+ * Gives the players the possibility to change the layout of the GUI
+ * 
+ * @author K. Vogel & B. Suhr
+ *
+ */
 public class LayoutChooser extends AbstractAction implements ActionListener, Action{
 	
 	/**

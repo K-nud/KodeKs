@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -10,6 +9,11 @@ import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 
 
+/**
+ * 
+ * @author K. Vogel & B. Suhr
+ *
+ */
 public class StatusPanel extends JPanel implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -22,6 +26,12 @@ public class StatusPanel extends JPanel implements Serializable{
 	int NumberOfRedStones=14;
 	int NumberOfBlueStones=14;
 	
+	/**
+	 * 
+	 * @param boardstate
+	 * @param parent
+	 * @param size
+	 */
 	public StatusPanel(KodeKsData boardstate, GUI parent, Dimension size){
 	
 	setBorder(new MatteBorder(1, 0, 0, 0, (Color) new Color(0, 0, 0)));
@@ -60,20 +70,6 @@ public class StatusPanel extends JPanel implements Serializable{
 	rightstat.add(bStones);
 	statPanel.add(rightstat);
 	
-//	JPanel leftbottom=new JPanel();
-//	JLabel P1StonesLeft = new JLabel("Stones left: ", JLabel.LEFT);
-//	leftstat.add(P1StonesLeft);
-//	rStones=new JLabel(""+NumberOfRedStones);
-//	leftstat.add(rStones);
-//	statPanel.add(leftbottom);
-	
-//	JPanel rightbottom=new JPanel();
-//	JLabel P2StonesLeft = new JLabel( "Stones left: ", JLabel.LEFT );
-//	rightbottom.add(P2StonesLeft);
-//	bStones=new JLabel(""+NumberOfRedStones);
-//	rightbottom.add(bStones);
-//	statPanel.add(rightbottom);
-//	
 	}
 }
 		

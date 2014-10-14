@@ -5,7 +5,11 @@ import java.io.*;
 
 import javax.swing.JOptionPane;
 
-
+/**
+ * 
+ * @author K. Vogel & B. Suhr
+ *
+ */
 public class SaveGame {
 	static String fixedPlayer1;
 	static String fixedPlayer2;

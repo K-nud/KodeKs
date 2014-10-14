@@ -7,10 +7,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 
 
+/**
+ * The menubar of the mainframe
+ * 
+ * @author K. Vogel & B. Suhr
+ *
+ */
 public class KodeKsMenuBar extends JMenuBar {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 42L;
 	
  public KodeKsMenuBar(final GUI parent){

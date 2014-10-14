@@ -1,13 +1,13 @@
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+
 /**
- * 
- * @author Knud Vogel
+ * Popup shows the name of the winner and gives the possibility to start a new game	
+ * @author K. Vogel & B. Suhr
  *
  */
 public class GameOverPopup extends PopupWindow
@@ -19,6 +19,7 @@ public class GameOverPopup extends PopupWindow
 	/**
 	 * Constructer of a "game over" popup. When this popup is visible the players can decide 
 	 * if they want to start a new game of KodeKs or if they want to quit.
+	 * 
 	 * @param parent - GUI
 	 * @param title - String
 	 */

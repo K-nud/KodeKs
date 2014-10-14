@@ -1,5 +1,3 @@
-
-
 import java.awt.*;
 import java.awt.event.*;
 
@@ -7,6 +5,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+
+/**
+ * 
+ * @author K. Vogel & B. Suhr
+ *
+ */
  public class QuitDialog extends PopupWindow implements ActionListener{
 	 /**
 	 * 
@@ -16,7 +20,11 @@ import javax.swing.JPanel;
 	private JLabel text;
 	private JButton yes, no;
 	
-	 public QuitDialog(GUI parent){
+	/**
+	 * 
+	 * @param parent
+	 */
+	public QuitDialog(GUI parent){
 
 			super(parent, "Quit?");
 			
@@ -53,9 +61,8 @@ import javax.swing.JPanel;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
+	
  }
  
  

@@ -16,7 +16,7 @@ import javax.swing.border.MatteBorder;
 
 /**
  * 
- * @author Knud Vogel
+ * @author K. Vogel B. Suhr
  * 
  */
 public class KodeKsBoard extends KodeKsData implements ActionListener,

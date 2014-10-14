@@ -4,8 +4,11 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 
 
-
-
+/**
+ * 
+ * @author K. Vogel B. Suhr
+ *
+ */
 public class LoadGame {
 	
 	int currentPlayer;

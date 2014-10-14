@@ -10,9 +10,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.Serializable;
 
+
 /**
+ * The mainframe of the GUI contains a menubar, a toolbar, a panel on which the board is displayed, etc.
  * 
- * @author Knud Vogel
+ * @author K. Vogel & B. Suhr
  *
  */
 public class GUI extends JFrame implements ActionListener,MouseListener, Serializable {
@@ -37,6 +39,7 @@ public class GUI extends JFrame implements ActionListener,MouseListener, Seriali
 	 * Construct a GUI to play KodeKs. It gets his data by the Board_At_Start of KodeKsData.
 	 * The mainframe of the GUI contains a menubar, a toolbar, a panel on which the board is displayed, an AnaLysePanel to show 
 	 * the maked moves during the game and a StatusPanel which displays messages (e.g. who's turn it is).
+	 * 
 	 * @param boardState - KodeKsData
 	 */
 	public GUI(KodeKsData boardState) {
@@ -57,6 +60,7 @@ public class GUI extends JFrame implements ActionListener,MouseListener, Seriali
 
 /**
 * Initialize the contents of the frame.
+* 
 */
 	
 //Menubar***************************************************************************
@@ -94,7 +98,7 @@ public class GUI extends JFrame implements ActionListener,MouseListener, Seriali
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (ClassNotFoundException | InstantiationException
 				| IllegalAccessException | UnsupportedLookAndFeelException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
@@ -141,32 +145,26 @@ public class GUI extends JFrame implements ActionListener,MouseListener, Seriali
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void mouseExited(MouseEvent arg0) {		
+	}
+	
+	@Override
+	public void mousePressed(MouseEvent arg0) {		
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void mouseReleased(MouseEvent arg0) {		
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent arg0) {	
 	}
 }
 	

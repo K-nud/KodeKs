@@ -2,11 +2,24 @@ import java.awt.*;
 
 import javax.swing.*;
 
+
+/**
+ * 
+ * @author K. Vogel & B. Suhr
+ *
+ */
 public class PopupWindow extends JDialog
 {
 	private static final long serialVersionUID = -6382879648233899539L;
+	
 	private Point parentLoc;
 	GUI parent;
+	
+	/**
+	 * 
+	 * @param parent
+	 * @param title
+	 */
 	public PopupWindow(GUI parent, String title)
 	{
 		super(parent,title);
@@ -21,6 +34,10 @@ public class PopupWindow extends JDialog
 		setLayout(new BoxLayout(this.getContentPane(), BoxLayout.PAGE_AXIS));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	}
+	
+	/**
+	 * 
+	 */
 	public void resetLocation()
 	{
 		if(parent.isVisible())

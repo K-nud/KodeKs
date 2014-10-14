@@ -1,47 +1,81 @@
-
 import java.io.Serializable;
 
 
+/**
+ * helpclass for the analysepanel to get the location of the stones
+ * 
+ * @author K. Vogel & B. Suhr
+ *
+ */
 
 public class Location implements Serializable
 {
 	private static final long serialVersionUID = 5087471276680520399L;
+	
 	int Row;
 	int Column;
 	
+	/**
+	 * 
+	 */
 	public Location()
 	{
 		Row = 0;
 		Column = 0;
 	}
 	
+	/**
+	 * 
+	 * @param Row
+	 * @param Column
+	 */
 	public Location(int Row, int Column)
 	{
 		this.Row = Row;
 		this.Column = Column;
 	}
 	
+	/**
+	 * 
+	 * @param move
+	 */
 	public Location(KodeKsData.KodeKsMove move)
 	{
 		this.Row = move.fromRow;
 		this.Column = move.fromCol;
 	}
 	
+	/**
+	 * 
+	 * @return int - row
+	 */
 	public int getRow()
 	{
 		return Row;
 	}
 	
+	/**
+	 * 
+	 * @return int column
+	 */
 	public int getCol()
 	{
 		return Column;
 	}
 	
+	/**
+	 * 
+	 * @param loc
+	 * @return boolean
+	 */
     public boolean equals(Location loc)
     {
         return loc.getRow() == this.getRow() && loc.getCol() == this.getCol();
     }
     
+    /**
+     * 
+     */
     public String toString()
     {
     	int col = getCol();

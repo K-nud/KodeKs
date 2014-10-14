@@ -13,6 +13,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 
+/**
+ * Dialog appears if a player resigned or a player had win a game
+ * Gives the possibility to start a new game
+ * 
+ * @author K. Vogel & B. Suhr
+ *
+ */
 public class NewGameDialog implements ActionListener {
 //Constructor
 	String contentNameP1Field;
@@ -50,10 +57,8 @@ public class NewGameDialog implements ActionListener {
 	 Button ngbutton = new Button("new game");
 	 ngbutton.addActionListener(new ActionListener(){
 	   	 public void actionPerformed(ActionEvent e){   		
-	   		 
-	   	
- 
-	   		GUI.analysePanel.clearAnalyse();
+	   			
+ 	   		GUI.analysePanel.clearAnalyse();
 	   		RunKodeKs.mainGUI.repaint();
 	   		
 	   		KodeKsBoard.Player1Name.setText(nameP1.getText());
@@ -65,12 +70,12 @@ public class NewGameDialog implements ActionListener {
 	   		StatusPanel.rStones.setText("14");
 	   		StatusPanel.bStones.setText("14");
 	   		
-	   		GUI.board.doNewGame();	
-	   		
+	   		GUI.board.doNewGame();	 		
 	   		
 	   		newgame.dispose();
 	   		}});
 	 NGLabel.add(ngbutton);
+	 
 	 //CancelButton
 	 Button cbutton = new Button("cancel");
 	 cbutton.addActionListener(new ActionListener(){
@@ -82,11 +87,8 @@ public class NewGameDialog implements ActionListener {
 	 }
 
 public void actionPerformed(ActionEvent arg0) {
-	// TODO Auto-generated method stub
-	
-}
-	 
-	
+	}
+	 	
 }
 	 
 	 

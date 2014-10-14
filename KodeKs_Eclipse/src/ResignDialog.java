@@ -6,16 +6,22 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
 	
  /**
-		 * 
-		 */	
+  *
+  * @author K. Vogel & B. Suhr
+  * 
+  */	
 public class ResignDialog implements ActionListener{
-		final JDialog resignDlg=new JDialog();
-		static JLabel resignmessage;
-		static JButton confirmButton, cancelButton;
-		ResignDialog(){
+		
+	final JDialog resignDlg=new JDialog();
+	static JLabel resignmessage;
+	static JButton confirmButton, cancelButton;
+		
+	/**
+	 * 
+	 */
+	ResignDialog(){
 			 
 			 //Fenster
 			 resignDlg.setBackground(Color.lightGray);
@@ -43,6 +49,10 @@ public class ResignDialog implements ActionListener{
 			 resignDlg.pack();
 			 resignDlg.setVisible(true);
 		 }
+	
+	/**
+	 * 	
+	 */
 		public void doResign() {
 	         
 	         if (KodeKsBoard.currentPlayer == KodeKsBoard.RED)
@@ -50,12 +60,15 @@ public class ResignDialog implements ActionListener{
 	         else
 	            gameOver("BLUE resigns.  RED wins.");
 	      }
+		
 		 /**
-	       * The game ends.  The parameter, str, is displayed as a message
+		  *  The game ends.  The parameter, str, is displayed as a message
 	       * to the user.  The states of the buttons are adjusted so players
 	       * can start a new game.  This method is called when the game
-	       * ends at any point in this class.
-	       */
+	       * ends at any point in this class
+	       * 
+		  * @param str
+		  */
 	      void gameOver(String str) {
 	    	  GUI.board.gameInProgress = false;
 	    	  ResignDialog.resignmessage.setText(str);
@@ -69,9 +82,8 @@ public class ResignDialog implements ActionListener{
 	      }
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
 		}
+		
 }
 	 
 		 
