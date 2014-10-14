@@ -1,4 +1,3 @@
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -212,7 +211,7 @@ public class KodeKsData extends JPanel implements Serializable {
 				GUI.board.Player2_Stones.add(point);
 			}
 			try {
-				AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("res/Glass_Break.wav"));
+				AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResourceAsStream("Glass_break.wav"));
 				AudioFormat af = audioInputStream.getFormat();
 				int size = (int) (af.getFrameSize() * audioInputStream.getFrameLength());
 				byte[] audio = new byte[size];
@@ -226,9 +225,8 @@ public class KodeKsData extends JPanel implements Serializable {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-			KodeKsBoard.NumberOfRedStones = GUI.board.getNumberOfStones(RED);// recount
-																				// the left pieces of each player
+			// recount the remaining pieces for each player
+			KodeKsBoard.NumberOfRedStones = GUI.board.getNumberOfStones(RED);
 			KodeKsBoard.NumberOfBlueStones = GUI.board.getNumberOfStones(BLUE);
 		}
 	}
@@ -509,8 +507,8 @@ public class KodeKsData extends JPanel implements Serializable {
 		}
 
 		/*
-		 * If no threatened pieces have been found, return null. Otherwise, create an array just big enough to hold all the threatened pieces, copy these from the
-		 * ArrayList into the array, and return the array.
+		 * If no threatened pieces have been found, return null. Otherwise, create an array just big enough to hold all the threatened pieces, copy these from
+		 * the ArrayList into the array, and return the array.
 		 */
 
 		// just as above, transfer the arraylist into an array
