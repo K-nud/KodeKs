@@ -464,10 +464,10 @@ public class KodeKsBoard extends KodeKsData implements ActionListener, MouseList
 						laserVertical.paintIcon(this, g, 123 + laserCol * 50, 67 + laserRow * 50);
 						// same but for first diagonal
 					} else if (laserFields[i].orientation == "diagonalNW") {
-						laserDiagonalNW.paintIcon(this, g, 123 + laserCol * 50, 67 + laserRow * 50);
+						laserDiagonalNW.paintIcon(this, g, 103 + laserCol * 50, 47 + laserRow * 50);
 						// same but for second diagonal
 					} else if (laserFields[i].orientation == "diagonalNE") {
-						laserDiagonalNE.paintIcon(this, g, 123 + laserCol * 50, 67 + laserRow * 50);
+						laserDiagonalNE.paintIcon(this, g, 103 + laserCol * 50, 47 + laserRow * 50);
 					}
 
 				}
