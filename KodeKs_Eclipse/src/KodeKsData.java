@@ -309,6 +309,8 @@ public class KodeKsData extends JPanel implements Serializable {
 					range = 0;
 					// reset final laser position for every new direction
 					laserEndpointFound = false;
+					// reset list of potential laser for each new direction
+					potentialLaserFields = new ArrayList<LaserField>();
 
 					// same as above but for horizontal to the right
 					if (col + 1 < 10 && pieceAt(row, col + 1) == player) {
@@ -334,6 +336,8 @@ public class KodeKsData extends JPanel implements Serializable {
 					range = 0;
 					// reset final laser position for every new direction
 					laserEndpointFound = false;
+					// reset list of potential laser for each new direction
+					potentialLaserFields = new ArrayList<LaserField>();
 					
 					// same as above but for diagonal from top left to bottom right
 					if (row + 1 < 10 && col + 1 < 10 && pieceAt(row + 1, col + 1) == player) {
@@ -358,6 +362,8 @@ public class KodeKsData extends JPanel implements Serializable {
 					range = 0;
 					// reset final laser position for every new direction
 					laserEndpointFound = false;
+					// reset list of potential laser for each new direction
+					potentialLaserFields = new ArrayList<LaserField>();
 					
 					// same as above but for NE diagonal
 					if (row + 1 < 10 && col - 1 >= 0 && pieceAt(row + 1, col - 1) == player) {
@@ -381,6 +387,8 @@ public class KodeKsData extends JPanel implements Serializable {
 					range = 0;
 					// reset final laser position for every new direction
 					laserEndpointFound = false;
+					// reset list of potential laser for each new direction
+					potentialLaserFields = new ArrayList<LaserField>();
 					
 					// NE diagonal in the other direction
 					if (row - 1 >= 0 && col + 1 < 10 && pieceAt((row - 1), (col + 1)) == player) {
@@ -405,6 +413,8 @@ public class KodeKsData extends JPanel implements Serializable {
 					range = 0;
 					// reset final laser position for every new direction
 					laserEndpointFound = false;
+					// reset list of potential laser for each new direction
+					potentialLaserFields = new ArrayList<LaserField>();
 					
 					// same as above but vertically upwards
 					if (row - 1 >= 0 && pieceAt(row - 1, col) == player) {
@@ -429,6 +439,8 @@ public class KodeKsData extends JPanel implements Serializable {
 					range = 0;
 					// reset final laser position for every new direction
 					laserEndpointFound = false;
+					// reset list of potential laser for each new direction
+					potentialLaserFields = new ArrayList<LaserField>();
 					
 					// same as above but horizontally to the left
 					if (col - 1 >= 0 && pieceAt(row, col - 1) == player) {
@@ -453,6 +465,8 @@ public class KodeKsData extends JPanel implements Serializable {
 					range = 0;
 					// reset final laser position for every new direction
 					laserEndpointFound = false;
+					// reset list of potential laser for each new direction
+					potentialLaserFields = new ArrayList<LaserField>();
 					
 					// same as above but diagonally from bottom right to top left
 					if (row - 1 >= 0 && col - 1 >= 0 && pieceAt(row - 1, col - 1) == player) {
