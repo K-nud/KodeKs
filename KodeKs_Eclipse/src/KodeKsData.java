@@ -1,4 +1,3 @@
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -10,7 +9,6 @@ import javax.sound.sampled.DataLine;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 
 /**
  * An object of this class holds data about a game of KodeKs. It knows what kind of piece is on each square of the KodeKsboard. Methods are provided to return
@@ -95,14 +93,14 @@ public class KodeKsData extends JPanel implements Serializable {
 	static final int EMPTY = 0, red = 1, blue = 2;
 
 	/**
-	 * This array shows the value of each field of the gameboard
+	 * This array shows the value of each field of the board
 	 */
 	public final static int[][] fieldvalue = { { 2, 3, 4, 1, 2, 3, 1, 4, 3, 2 }, { 3, 1, 2, 3, 4, 1, 3, 2, 1, 3 }, { 4, 2, 1, 4, 1, 4, 2, 1, 2, 4 },
 			{ 1, 3, 2, 3, 2, 1, 3, 4, 3, 1 }, { 3, 1, 4, 1, 2, 4, 2, 1, 4, 2 }, { 2, 4, 1, 2, 4, 2, 1, 4, 1, 3 }, { 1, 3, 4, 3, 1, 2, 3, 2, 3, 1 },
 			{ 4, 2, 1, 2, 4, 1, 4, 1, 2, 4 }, { 3, 1, 2, 3, 1, 4, 3, 2, 1, 3 }, { 2, 3, 4, 1, 3, 2, 1, 4, 3, 2 } };
 
 	/**
-	 * This array shows, where are pieces on the board at the beginning of the game
+	 * This array shows, where there are pieces on the board at the beginning of the game
 	 */
 	public final static int[][] board_AT_START = {
 
@@ -133,11 +131,11 @@ public class KodeKsData extends JPanel implements Serializable {
 	 * Return the contents of the square in the specified row and column.
 	 * 
 	 * @param row
-	 * 			- int
+	 *            - int
 	 * @param col
-	 * 			- int
+	 *            - int
 	 * @return
-	 */ 
+	 */
 	int pieceAt(int row, int col) {
 		return board[row][col];
 	}
@@ -179,10 +177,11 @@ public class KodeKsData extends JPanel implements Serializable {
 	}
 
 	/**
-	 * 	 * Take a specified threaten Stone of the opponent
+	 * * Take a specified threaten Stone of the opponent
 	 * 
-	 * @param take - ThreatenStone
-	 */	 
+	 * @param take
+	 *            - ThreatenStone
+	 */
 	void takeStone(ThreatenStone take) {
 		takeStone(take.threatenRow, take.threatenCol);
 	}
@@ -199,8 +198,8 @@ public class KodeKsData extends JPanel implements Serializable {
 		if (board[row][col] != EMPTY) {
 			board[row][col] = EMPTY;
 
-			JLabel point = new JLabel(""); // puts the taken stone on the
-			// "stonepanel"
+			JLabel point = new JLabel(""); // puts the taken stone into the panel on the side
+
 			point.setAlignmentX(CENTER_ALIGNMENT);
 			if (KodeKsBoard.currentPlayer == red) {
 				ImageIcon iconP1 = new ImageIcon(getClass().getClassLoader().getResource("blueStone.png"));
@@ -212,7 +211,7 @@ public class KodeKsData extends JPanel implements Serializable {
 				GUI.board.player2_Stones.add(point);
 			}
 			try {
-				AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("res/Glass_Break.wav"));
+				AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResourceAsStream("Glass_break.wav"));
 				AudioFormat af = audioInputStream.getFormat();
 				int size = (int) (af.getFrameSize() * audioInputStream.getFrameLength());
 				byte[] audio = new byte[size];
@@ -226,10 +225,16 @@ public class KodeKsData extends JPanel implements Serializable {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+<<<<<<< HEAD
 
 			KodeKsBoard.numberOfRedStones = GUI.board.getNumberOfStones(red);// recount
 																			// the left pieces of each player
 			KodeKsBoard.numberOfBlueStones = GUI.board.getNumberOfStones(blue);
+=======
+			// recount the remaining pieces for each player
+			KodeKsBoard.NumberOfRedStones = GUI.board.getNumberOfStones(RED);
+			KodeKsBoard.NumberOfBlueStones = GUI.board.getNumberOfStones(BLUE);
+>>>>>>> origin/master
 		}
 	}
 
@@ -244,7 +249,7 @@ public class KodeKsData extends JPanel implements Serializable {
 	 * 
 	 * @param player
 	 *            - int The value of player should be one of the constants RED or BLUE
-	 * @return ArrayList of threaten pieces of the opponent player
+	 * @return ArrayList of threatened pieces of the other player
 	 */
 
 	ThreatenStone[] getThreatenStone(int player) {
@@ -252,14 +257,10 @@ public class KodeKsData extends JPanel implements Serializable {
 		if (player != red && player != blue)
 			return null;
 
-		threaten = new ArrayList<ThreatenStone>(); // reset list of threatened
-		// stones
-		laserFields = new ArrayList<LaserField>(); // reset list of fields
-		// filled with lasers
-		// This list holds lasers that may or may not connect to a stone, if no
-		// connection is made.
-		// If a connection is made, this list will be added to laserFields. If
-		// not, the list will be scrapped.
+		// reset list of threatened stones
+		threaten = new ArrayList<ThreatenStone>();
+		// reset list of fields filled with lasers
+		laserFields = new ArrayList<LaserField>();
 
 		/*
 		 * If that square contains one of the player's pieces, look at a possible move in each of the four directions from that square. If there is a legal move
@@ -276,6 +277,7 @@ public class KodeKsData extends JPanel implements Serializable {
 		// for every stone on the board
 		for (int row = 0; row < 10; row++) {
 			for (int col = 0; col < 10; col++) {
+				// that belongs to the current player
 				if (board[row][col] == player) {
 					// reset laser range for every new stone
 					range = 0;
@@ -284,12 +286,11 @@ public class KodeKsData extends JPanel implements Serializable {
 					// reset list of potential laser for each new stone
 					potentialLaserFields = new ArrayList<LaserField>();
 
-					// if there is stone below this one owned by the player in question
+					// if there is stone below this one owned by the player in question (to form a combo with)
 					if (row + 1 < 10 && pieceAt(row + 1, col) == player) {
 						// evaluate the combo's threat
 						range = ((fieldvalue[row][col]) + (fieldvalue[row + 1][col]));
-						// go all the way to maximum range, unless end point is
-						// found
+						// go all the way to maximum range, unless end point is found
 						for (int i = 1; i <= range && laserEndpointFound == false; i++) {
 							// if this is still on the board
 							if (onBoard((row + 1) + i, col)) {
@@ -443,7 +444,8 @@ public class KodeKsData extends JPanel implements Serializable {
 			}
 		}
 
-		// check if there is a combination of more than two stones on the board
+		// check for overloaded stones
+		// a stone is overloaded, when it is part of more than one potentially threatening combination
 
 		// for every position on the board
 		for (int row = 0; row < 10; row++) {
@@ -500,9 +502,9 @@ public class KodeKsData extends JPanel implements Serializable {
 
 		// if there are no lasers in the list
 		if (laserFields.size() == 0)
-			// give back an empty array
+			// remove the whole array
 			laserFieldsArray = null;
-		// if we do have stones, however
+		// if we do have lasers, however
 		else {
 			// write the whole list of lasers into the array
 			laserFieldsArray = new LaserField[laserFields.size()];
@@ -512,8 +514,8 @@ public class KodeKsData extends JPanel implements Serializable {
 		}
 
 		/*
-		 * If no threaten pieces have been found, return null. Otherwise, create an array just big enough to hold all the threatened pieces, copy these from the
-		 * ArrayList into the array, and return the array.
+		 * If no threatened pieces have been found, return null. Otherwise, create an array just big enough to hold all the threatened pieces, copy these from
+		 * the ArrayList into the array, and return the array.
 		 */
 
 		// just as above, transfer the arraylist into an array
@@ -531,10 +533,10 @@ public class KodeKsData extends JPanel implements Serializable {
 
 	/**
 	 * This is called by the getThreatenStone() method to determine whether the player can take an opponents stone from (row,col). It is assumed that (row,col)
-	 * contains one of the opponent player's pieces.
+	 * contains a stone. So if the stone is an enemy's, it can be taken.
 	 * 
 	 * @param player
-	 * 			  - int	
+	 *            - int
 	 * @param row
 	 *            - int
 	 * @param col
@@ -550,8 +552,9 @@ public class KodeKsData extends JPanel implements Serializable {
 
 	/**
 	 * Make the specified move. It is assumed that move is non-null and that the move it represents is legal.
+	 * 
 	 * @param move
-	 * 			- KodeKsMove
+	 *            - KodeKsMove
 	 */
 	void makeMove(KodeKsMove move) {
 		makeMove(move.fromRow, move.fromCol, move.toRow, move.toCol);
@@ -561,13 +564,13 @@ public class KodeKsData extends JPanel implements Serializable {
 	 * Make the move from (fromRow,fromCol) to (toRow,toCol). It is assumed that this move is legal.
 	 * 
 	 * @param fromRow
-	 * 			- int
+	 *            - int
 	 * @param fromCol
-	 * 			- int
+	 *            - int
 	 * @param toRow
-	 * 			- int
+	 *            - int
 	 * @param toCol
-	 * 			- int
+	 *            - int
 	 */
 	void makeMove(int fromRow, int fromCol, int toRow, int toCol) {
 		board[toRow][toCol] = board[fromRow][fromCol];
@@ -654,18 +657,19 @@ public class KodeKsData extends JPanel implements Serializable {
 	} // end getLegalMoves
 
 	/**
-	 * 	 * This is called by the getLegalMoves() method to determine whether the player can legally move from (r1,c1) to (r2,c2). It is assumed that (r1,r2)
+	 * * This is called by the getLegalMoves() method to determine whether the player can legally move from (r1,c1) to (r2,c2). It is assumed that (r1,r2)
 	 * contains one of the player's pieces and that (r2,c2) is a neighboring square.
+	 * 
 	 * @param player
-	 * 			- int
+	 *            - int
 	 * @param r1
-	 * 			- int
+	 *            - int
 	 * @param c1
-	 * 			- int
+	 *            - int
 	 * @param r2
-	 * 			- int
+	 *            - int
 	 * @param c2
-	 * 			- int
+	 *            - int
 	 * @return
 	 */
 	private boolean canMove(int player, int r1, int c1, int r2, int c2) {

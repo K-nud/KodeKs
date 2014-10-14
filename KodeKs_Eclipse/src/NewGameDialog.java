@@ -12,18 +12,17 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
 /**
- * Dialog appears if a player resigned or a player had win a game
- * Gives the possibility to start a new game
+ * Dialog appears if a player resigned or a player had win a game Gives the possibility to start a new game
  * 
  * @author K. Vogel & B. Suhr
- *
+ * 
  */
 public class NewGameDialog implements ActionListener {
-//Constructor
+	// Constructor
 	String contentNameP1Field;
 	String contentNameP2Field;
+<<<<<<< HEAD
 	NewGameDialog(){
 		
 		
@@ -85,10 +84,74 @@ public class NewGameDialog implements ActionListener {
 	 newgame.pack();
 	 newgame.setVisible(true);
 	 }
+=======
+>>>>>>> origin/master
 
-public void actionPerformed(ActionEvent arg0) {
+	NewGameDialog() {
+
+		final JFrame newgame = new JFrame("New Game");
+		// Fenster
+		newgame.setBackground(Color.lightGray);
+		newgame.setLayout(new BorderLayout());
+		newgame.setBounds(325, 360, 300, 400);
+		// newgame.setResizable(false); //Hinweis im Text beachten
+
+		// Message
+		newgame.add(new Label("Let's start a new game of KodeKs!"), BorderLayout.NORTH);
+		// Player IDs
+		JPanel NGLabel = new JPanel();
+		newgame.add(NGLabel, BorderLayout.CENTER);
+		NGLabel.setLayout(new GridLayout(3, 3));
+		NGLabel.add(new Label("Player 1:"));
+		final JTextField nameP1 = new JTextField("RED");
+		NGLabel.add(nameP1);
+		NGLabel.add(new Label(null));
+		NGLabel.add(new Label("Player 2:"));
+		final JTextField nameP2 = new JTextField("BLUE");
+		NGLabel.add(nameP2);
+		NGLabel.add(new Label(null));
+		NGLabel.add(new Label(null));
+
+		// Buttons
+		Panel panel = new Panel();
+		panel.setLayout(new FlowLayout(FlowLayout.CENTER));
+		// NewGameButton
+		Button ngbutton = new Button("new game");
+		ngbutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				GUI.analysePanel.clearAnalyse();
+				RunKodeKs.mainGUI.repaint();
+
+				KodeKsBoard.Player1Name.setText(nameP1.getText());
+				KodeKsBoard.Player2Name.setText(nameP2.getText());
+				AnalysePanel.Player1Name.setText(nameP1.getText());
+				AnalysePanel.Player2Name.setText(nameP2.getText());
+				StatusPanel.Player1Name.setText(nameP1.getText());
+				StatusPanel.Player2Name.setText(nameP2.getText());
+				StatusPanel.rStones.setText("14");
+				StatusPanel.bStones.setText("14");
+
+				GUI.board.doNewGame();
+
+				newgame.dispose();
+			}
+		});
+		NGLabel.add(ngbutton);
+
+		// CancelButton
+		Button cbutton = new Button("cancel");
+		cbutton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				newgame.dispose();
+			}
+		});
+		NGLabel.add(cbutton);
+		newgame.pack();
+		newgame.setVisible(true);
 	}
-	 	
+
+	public void actionPerformed(ActionEvent arg0) {
+	}
+
 }
-	 
-	 
