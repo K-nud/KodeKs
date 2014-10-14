@@ -285,18 +285,18 @@ public class KodeKsData extends JPanel implements Serializable {
 									// then add this field to potential lasers
 									potentialLaserFields.add(new LaserField((row + 1 + i), col, "vertical"));
 									// if there is a piece there, though
-								} else if (pieceAt((row + 1) + i, col) != EMPTY)
-									// and that piece belongs to the other
-									// player
+								} else if (pieceAt((row + 1) + i, col) != EMPTY) {
+									// then this is where we stop looking
+									laserEndpointFound = true;
+									// if that piece belongs to the other player
 									if (canTakeThreatenStone(player, (row + 1) + i, col)) {
-										// then add it to the list of threatened
+										// then add it to the list of threatened stones
 										threaten.add(new ThreatenStone((row + 1) + i, col));
-										// only one stone in a row can be threatened
-										// so this is where we stop looking
-										laserEndpointFound = true;
 										// and add all potential lasers to the list of definite lasers
 										laserFields.addAll(potentialLaserFields);
 									}
+
+								}
 							}
 						}
 					}
@@ -307,12 +307,15 @@ public class KodeKsData extends JPanel implements Serializable {
 							if (onBoard(row, (col + 1) + i)) {
 								if (pieceAt(row, (col + 1) + i) == EMPTY) {
 									potentialLaserFields.add(new LaserField(row, (col + i + 1), "horizontal"));
-								} else if (pieceAt(row, (col + 1) + i) != EMPTY)
+								} else if (pieceAt(row, (col + 1) + i) != EMPTY) {
+									laserEndpointFound = true;
+
 									if (canTakeThreatenStone(player, row, (col + 1) + i)) {
 										threaten.add(new ThreatenStone(row, (col + 1) + i));
-										laserEndpointFound = true;
 										laserFields.addAll(potentialLaserFields);
 									}
+								}
+
 							}
 						}
 					}
@@ -323,12 +326,14 @@ public class KodeKsData extends JPanel implements Serializable {
 							if (onBoard((row + 1) + i, (col + 1) + i)) {
 								if (pieceAt((row + 1) + i, (col + 1) + i) == EMPTY) {
 									potentialLaserFields.add(new LaserField((row + 1 + i), (col + i + 1), "diagonalNW"));
-								} else if (pieceAt((row + 1) + i, (col + 1) + i) != EMPTY)
+								} else if (pieceAt((row + 1) + i, (col + 1) + i) != EMPTY) {
+									laserEndpointFound = true;
 									if (canTakeThreatenStone(player, (row + 1) + i, (col + 1) + i)) {
 										threaten.add(new ThreatenStone((row + 1) + i, (col + 1) + i));
-										laserEndpointFound = true;
 										laserFields.addAll(potentialLaserFields);
 									}
+
+								}
 							}
 						}
 					}
@@ -339,12 +344,13 @@ public class KodeKsData extends JPanel implements Serializable {
 							if (onBoard((row + 1) + i, (col - 1) - i)) {
 								if (pieceAt((row + 1) + i, (col - 1) - i) == EMPTY) {
 									potentialLaserFields.add(new LaserField((row + 1 + i), (col - i - 1), "diagonalNE"));
-								} else if (pieceAt((row + 1) + i, (col - 1) - i) != EMPTY)
+								} else if (pieceAt((row + 1) + i, (col - 1) - i) != EMPTY) {
+									laserEndpointFound = true;
 									if (canTakeThreatenStone(player, (row + 1) + i, (col - 1) - i)) {
 										threaten.add(new ThreatenStone((row + 1) + i, (col - 1) - i));
-										laserEndpointFound = true;
 										laserFields.addAll(potentialLaserFields);
 									}
+								}
 							}
 						}
 					}
@@ -355,12 +361,14 @@ public class KodeKsData extends JPanel implements Serializable {
 							if (onBoard((row - 1) - i, (col + 1) + i)) {
 								if (pieceAt((row - 1) - i, (col + 1) + i) == EMPTY) {
 									potentialLaserFields.add(new LaserField((row - 1 - i), (col + i + 1), "diagonalNE"));
-								} else if (pieceAt((row - 1) - i, (col + 1) + i) != EMPTY)
+								} else if (pieceAt((row - 1) - i, (col + 1) + i) != EMPTY) {
+									laserEndpointFound = true;
 									if (canTakeThreatenStone(player, (row - 1) - i, (col + 1) + i)) {
 										threaten.add(new ThreatenStone((row - 1) - i, (col + 1) + i));
-										laserEndpointFound = true;
 										laserFields.addAll(potentialLaserFields);
 									}
+
+								}
 							}
 						}
 					}
@@ -371,12 +379,14 @@ public class KodeKsData extends JPanel implements Serializable {
 							if (onBoard((row - 1) - i, col)) {
 								if (pieceAt((row - 1) - i, col) == EMPTY) {
 									potentialLaserFields.add(new LaserField((row - 1 - i), col, "vertical"));
-								} else if (pieceAt((row - 1) - i, col) != EMPTY)
+								} else if (pieceAt((row - 1) - i, col) != EMPTY) {
+									laserEndpointFound = true;
 									if (canTakeThreatenStone(player, (row - 1) - i, col)) {
 										threaten.add(new ThreatenStone((row - 1) - i, col));
-										laserEndpointFound = true;
 										laserFields.addAll(potentialLaserFields);
 									}
+
+								}
 							}
 						}
 					}
@@ -387,12 +397,14 @@ public class KodeKsData extends JPanel implements Serializable {
 							if (onBoard(row, (col - 1) - i)) {
 								if (pieceAt(row, (col - 1) - i) == EMPTY) {
 									potentialLaserFields.add(new LaserField(row, (col - 1 - i), "horizontal"));
-								} else if (pieceAt(row, (col - 1) - i) != EMPTY)
+								} else if (pieceAt(row, (col - 1) - i) != EMPTY) {
+									laserEndpointFound = true;
 									if (canTakeThreatenStone(player, row, (col - 1) - i)) {
 										threaten.add(new ThreatenStone(row, (col - 1) - i));
-										laserEndpointFound = true;
 										laserFields.addAll(potentialLaserFields);
 									}
+
+								}
 							}
 						}
 					}
@@ -403,12 +415,14 @@ public class KodeKsData extends JPanel implements Serializable {
 							if (onBoard((row - 1) - i, (col - 1) - i)) {
 								if (pieceAt((row - 1) - i, (col - 1) - i) == EMPTY) {
 									potentialLaserFields.add(new LaserField((row - 1 - i), (col - 1 - i), "diagonalNW"));
-								} else if (pieceAt((row - 1) - i, (col - 1) - i) != EMPTY)
+								} else if (pieceAt((row - 1) - i, (col - 1) - i) != EMPTY) {
+									laserEndpointFound = true;
 									if (canTakeThreatenStone(player, (row - 1) - i, (col - 1) - i)) {
 										threaten.add(new ThreatenStone((row - 1) - i, (col - 1) - i));
-										laserEndpointFound = true;
 										laserFields.addAll(potentialLaserFields);
 									}
+
+								}
 							}
 						}
 					}
@@ -471,13 +485,13 @@ public class KodeKsData extends JPanel implements Serializable {
 		// fill laserFieldsArray with content.
 		// because this is done here, make sure to call getThreatenStone before getLaserFields
 
-		//if there are no lasers in the list
+		// if there are no lasers in the list
 		if (laserFields.size() == 0)
-			//give back an empty array
+			// give back an empty array
 			laserFieldsArray = null;
-		//if we do have stones, however
+		// if we do have stones, however
 		else {
-			//write the whole list of lasers into the array
+			// write the whole list of lasers into the array
 			laserFieldsArray = new LaserField[laserFields.size()];
 			for (int i = 0; i < laserFields.size(); i++) {
 				laserFieldsArray[i] = laserFields.get(i);
@@ -489,7 +503,7 @@ public class KodeKsData extends JPanel implements Serializable {
 		 * ArrayList into the array, and return the array.
 		 */
 
-		//just as above, transfer the arraylist into an array
+		// just as above, transfer the arraylist into an array
 		if (threaten.size() == 0)
 			return null;
 		else {
